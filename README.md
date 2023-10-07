@@ -1,37 +1,74 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Athormax is a web application that allows users to watch movie trailers using the TMDB API. It is built with Next.js, styled with Tailwind CSS, and uses Chakra UI for UI components, as well as Recoil.js for state management.
 
 ## Getting Started
 
-First, run the development server:
+Follow these instructions to get a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisites
+
+Before you begin, ensure you have met the following requirements:
+
+- Node.js and npm installed on your machine.
+
+### Installation
+
+1. clone repository
+
+```bash
+git clone https://github.com/your-username/athormax.git
+cd athormax
+```
+
+2. Install dependencies
+
+```bash
+npm install
+
+```
+
+3. Start the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Usage
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Browse the list of movies and click on a movie card to watch its trailer.
 
-## Learn More
+- Click on the official website link to visit the movie's official site.
 
-To learn more about Next.js, take a look at the following resources:
+## Road Map
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+I plan to add the following features in future releases:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- User account creation and management.
+- Ability to save favorite movies.
 
-## Deploy on Vercel
+## Contributions
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Contributions are welcome! Please follow these steps to contribute to the project:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Fork the project.
+2. Create a new branch for your feature or bug fix: git checkout -b feature/your-feature-name
+3. Make your changes and commit them: git commit -m 'Add new feature'
+4. Push your changes to your fork: git push origin feature/your-feature-name
+5. Open a pull request to the main repository.
+
+## License
+
+This project is has no licences attached
+
+## Acknowledgement
+
+The TMDB API for providing movie data.
+The Next.js, Tailwind CSS, Chakra UI, and Recoil.js communities for their excellent tools and libraries.
+
+## Contact
+
+If you have any questions or feedback, feel free to reach out to us at hermanathorg@gmail.com.
+
 # athormax

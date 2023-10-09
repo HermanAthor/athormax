@@ -23,7 +23,11 @@ function VideoPlayer({ embededVideos, open, close }) {
   return (
     <Modal onClose={close} size={"full"} isOpen={open}>
       <ModalOverlay />
-      <ModalContent>
+      <ModalContent
+        bg={"blackAlpha.700"}
+        textColor={"whiteAlpha.900"}
+        color={"white"}
+      >
         <ModalCloseButton
           color={"blue.500"}
           fontSize={"3xl"}

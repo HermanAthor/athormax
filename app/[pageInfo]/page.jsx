@@ -1,34 +1,65 @@
+"use client";
 import { fetchFilms, fetchMovieVideo } from "@/libs/getMovies";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import Link from "next/link";
 import ListCategories from "@/components/ListCategories";
+import VideoModalHero from "@/components/Modals/VideoModalHero";
+import { useDisclosure } from "@chakra-ui/react";
 
-async function MoviePage({ params }) {
+function MoviePage({ params }) {
+  const [video, setVideo] = useState([]);
+  const [similarMovies, setSimilarMovies] = useState([]);
+  const [recommendedMovies, setRecommendedMovies] = useState([]);
+  const { isOpen, onClose, onOpen } = useDisclosure();
+  const [movies, setMovies] = useState([]);
+
   const { pageInfo } = params;
-  const video = await fetchMovieVideo(pageInfo);
-  // https://api.themoviedb.org/3/movie/{movie_id}/similar
-  //
 
-  const getSimilarMovies = async (pageInfo) => {
-    const movieUrl = `https://api.themoviedb.org/3/movie/${pageInfo}/similar`;
-    const results = await fetchFilms(movieUrl);
-    return results;
+  useEffect(() => {
+    async function fetchVideo() {
+      try {
+        const videoResponse = await fetchMovieVideo(pageInfo);
+        if (videoResponse) {
+          setVideo(videoResponse);
+        } else {
+          return null;
+        }
+      } catch (error) {
+        console.error("Error fetching video:", error);
+      }
+    }
+    async function fetchSimilarMovies() {
+      try {
+        const movieUrl = `https://api.themoviedb.org/3/movie/${pageInfo}/similar`;
+        const videosResponse = await fetchFilms(movieUrl);
+        setSimilarMovies(videosResponse);
+      } catch (error) {
+        console.error("Error fetching video:", error);
+      }
+    }
+    async function fetchRecommendedMovies() {
+      try {
+        const movieUrl = `https://api.themoviedb.org/3/movie/${pageInfo}/recommendations`;
+        const videosResponse = await fetchFilms(movieUrl);
+        setRecommendedMovies(videosResponse);
+      } catch (error) {
+        console.error("Error fetching video:", error);
+      }
+    }
+    fetchRecommendedMovies();
+    fetchSimilarMovies();
+    fetchVideo();
+  }, [pageInfo]);
+
+  const getMovieVideos = async (pageInfo) => {
+    const response = await fetchMovieVideo(pageInfo);
+    setMovies(response);
+    onOpen();
+
+    return response;
   };
 
-  const getRecommendedMovies = async (pageInfo) => {
-    const movieUrl = `
-https://api.themoviedb.org/3/movie/${pageInfo}/recommendations`;
-    const results = await fetchFilms(movieUrl);
-    return results;
-  };
-
-  const similarMovies = await getSimilarMovies(pageInfo);
-  const recommendedMovies = await getRecommendedMovies(pageInfo);
-  console.log(recommendedMovies);
-  console.log(similarMovies);
-
-  console.log(video);
   const {
     backdrop_path,
     genres,
@@ -61,15 +92,20 @@ https://api.themoviedb.org/3/movie/${pageInfo}/recommendations`;
             <div className="flex justify-center items-center mr-60 md:m-0">
               <p className="pb-4 text-lg text-left mr-5">{overview}</p>
             </div>
-
-            <div className="flex flex-row gap-3">
-              <button className=" bg-gradient-to-r from-blue-600 to-blue-400 rounded-full p-3 border-none">
+          </div>
+          <div className="absolute inset-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <div className="flex ">
+              <button
+                onClick={() => getMovieVideos(pageInfo)}
+                className=" bg-transparent text-blue-400 rounded-full p-3 border-2 border-blue-400"
+              >
                 <PlayArrowIcon fontSize="large" />
               </button>
             </div>
           </div>
         </div>
       </div>
+      <VideoModalHero isOpen={isOpen} onClose={onClose} movieVideos={movies} />
       <ListCategories data={similarMovies} category={"Similar Movies"} />
       <ListCategories
         data={recommendedMovies}

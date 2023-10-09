@@ -49,7 +49,7 @@ export default function Home() {
     nowPlayingMovies.isLoading ||
     popularMovies.isLoading
   ) {
-    return <p>Loading...</p>;
+    return <p className="mt-32">Loading...</p>;
   }
 
   if (
@@ -57,7 +57,7 @@ export default function Home() {
     nowPlayingMovies.isError ||
     popularMovies.isError
   ) {
-    return <p>Error fetching data</p>;
+    return <p className="mt-32">Error fetching data </p>;
   }
 
   return (

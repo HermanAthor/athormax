@@ -1,3 +1,5 @@
+"use client";
+
 import { movieDurationfunction } from "@/libs/getDuration";
 import { releaseYear } from "@/libs/getReleaseYear";
 import {
@@ -14,8 +16,10 @@ import {
   Text,
 } from "@chakra-ui/react";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import VideoModalHero from "./VideoModalHero";
 
 function VideoModal({ movieVideo, isOpen, onClose }) {
+  const openVideo = useDisclosure();
   const {
     adult,
     budget,
@@ -39,7 +43,7 @@ function VideoModal({ movieVideo, isOpen, onClose }) {
     <div className="animate__zoomInLeft animate__delay-2s">
       <Modal onClose={onClose} isOpen={isOpen} isCentered size={"2xl"}>
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent bg={"blackAlpha.700"}>
           <ModalHeader>{title}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
@@ -50,7 +54,10 @@ function VideoModal({ movieVideo, isOpen, onClose }) {
                 className="w-full "
               />
               <Box className="absolute inset-1/2 transform -translate-x-1/2 -translate-y-1/2 text-blue-400">
-                <button className=" bg-transparent rounded-full p-3 border-2 border-blue-400">
+                <button
+                  onClick={openVideo.onOpen}
+                  className=" bg-transparent rounded-full p-3 border-2 border-blue-400"
+                >
                   <PlayArrowIcon fontSize="large" />
                 </button>
               </Box>
@@ -90,6 +97,11 @@ function VideoModal({ movieVideo, isOpen, onClose }) {
           </ModalFooter>
         </ModalContent>
       </Modal>
+      <VideoModalHero
+        isOpen={openVideo.isOpen}
+        onClose={openVideo.onClose}
+        movieVideos={videos}
+      />
     </div>
   );
 }

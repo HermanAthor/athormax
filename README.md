@@ -69,6 +69,6 @@ The Next.js, Tailwind CSS, Chakra UI, and Recoil.js communities for their excell
 
 ## Contact
 
-If you have any questions or feedback, feel free to reach out to us at hermanathorg@gmail.com.
+If you have any questions or feedback, feel free to reach out to us at hermanathorg@gmail.com
 
 # athormax

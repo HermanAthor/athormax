@@ -6,10 +6,14 @@ import "swiper/css/bundle";
 import "swiper/css";
 import "swiper/css/navigation";
 import "./swipperstyles.css";
-import { useDisclosure } from "@chakra-ui/react";
+import { Button, useDisclosure } from "@chakra-ui/react";
 import VideoModal from "./Modals/VideoModal";
 import { fetchMovieVideo, fetchUpComingMovies } from "@/libs/getMovies";
+import { ArrowForwardIcon } from "@chakra-ui/icons";
 import { useQuery } from "react-query";
+
+import Link from "next/link";
+import VideoModalHero from "./Modals/VideoModalHero";
 
 function ListCategories({ data, category }) {
   const { isOpen, onClose, onOpen } = useDisclosure();
@@ -57,8 +61,8 @@ function ListCategories({ data, category }) {
           const { backdrop_path, title, id } = movie;
           if (backdrop_path) {
             return (
-              <SwiperSlide key={id} onClick={() => getMovieVideos(id)}>
-                <div className="bg-transparent">
+              <SwiperSlide key={id}>
+                <div className="bg-transparent relative ">
                   <div className="h-[400px] w-full bg-transparent">
                     <img
                       src={`https://image.tmdb.org/t/p/w500${backdrop_path}`}
@@ -67,13 +71,25 @@ function ListCategories({ data, category }) {
                     />
                   </div>
                   <h6>{title}</h6>
+                  <div className=" absolute bottom-10 left-3 flex flex-row gap-4">
+                    <Button
+                      onClick={() => getMovieVideos(id)}
+                      variant={"solid"}
+                      colorScheme="blue"
+                    >
+                      Play
+                    </Button>
+                    <Link href={`/${id}`}>
+                      <Button rightIcon={<ArrowForwardIcon />}>More</Button>
+                    </Link>
+                  </div>
                 </div>
               </SwiperSlide>
             );
           }
         })}
-        <VideoModal
-          movieVideo={videos}
+        <VideoModalHero
+          movieVideos={videos}
           data={data}
           isOpen={isOpen}
           onClose={onClose}

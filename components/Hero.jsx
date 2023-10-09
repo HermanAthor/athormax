@@ -49,6 +49,8 @@ function Hero() {
     );
   if (error) return <p>{error.message}</p>;
 
+  console.log("Videos from the Hero section", videos);
+
   return (
     <div className="w-full h-screen relative overflow-clip ">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent  to-black"></div>

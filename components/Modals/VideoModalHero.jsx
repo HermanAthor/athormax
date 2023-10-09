@@ -20,17 +20,9 @@ import { movieDurationfunction } from "@/libs/getDuration";
 
 function VideoModalHero({ movieVideos, isOpen, onClose }) {
   const videoModal = useDisclosure();
+  console.log(movieVideos);
 
-  const {
-    backdrop_path,
-    genres,
-    homepage,
-    original_title,
-    overview,
-    runtime,
-    tagline,
-    videos,
-  } = movieVideos; // destructuring the movieVideos
+  // destructuring the movieVideos
   // function to get the duration of the video and it should return in this format --- 1h 40m
   // function movieDuration() {
   //   const hours = Math.floor(runtime / 60);
@@ -40,7 +32,7 @@ function VideoModalHero({ movieVideos, isOpen, onClose }) {
 
   // function to get the embeded Youtube videos
 
-  const results = videos?.results;
+  const results = movieVideos?.videos?.results;
 
   const embededVideos = [];
 
@@ -49,7 +41,8 @@ function VideoModalHero({ movieVideos, isOpen, onClose }) {
     if (type == "Trailer" && site == "YouTube") {
       embededVideos.push(
         <iframe
-          className="w-full h-screen"
+          width={"90%"}
+          height={"90%"}
           src={`https://www.youtube.com/embed/${key}`}
           title={video.name}
           frameborder="0"
@@ -62,18 +55,29 @@ function VideoModalHero({ movieVideos, isOpen, onClose }) {
 
   return (
     <div className="animate__zoomInLeft animate__delay-2s">
-      <Modal onClose={onClose} isOpen={isOpen} isCentered size={"3xl"}>
+      <Modal
+        onClose={onClose}
+        isOpen={isOpen}
+        isCentered
+        size={"3xl"}
+        colorScheme="blackAlpha"
+      >
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent
+          bg={"blackAlpha.700"}
+          textColor={"whiteAlpha.700"}
+          fontFamily={"cursive"}
+          fontSize={"3xl"}
+        >
           <ModalHeader>
-            <Text fontSize={"3xl"}>{original_title}</Text>
-            <Text fontSize={"lg"}>{tagline}</Text>
+            <Text fontSize={"3xl"}>{movieVideos?.original_title}</Text>
+            <Text fontSize={"lg"}>{movieVideos?.tagline}</Text>
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Box className="relative">
               <Image
-                src={`https://image.tmdb.org/t/p/w500${backdrop_path}`}
+                src={`https://image.tmdb.org/t/p/w500${movieVideos?.backdrop_path}`}
                 fallbackSrc="https://via.placeholder.com/150"
                 className="w-full h-auto"
               />
@@ -87,20 +91,20 @@ function VideoModalHero({ movieVideos, isOpen, onClose }) {
               </Box>
               <Box className="absolute bottom-3 left-3 text-white">
                 <Text fontSize={"2xl"}>
-                  {genres?.map((genre) => (
+                  {movieVideos?.genres?.map((genre) => (
                     <span className="px-2 ">{genre.name}</span>
                   ))}
                 </Text>
                 <Text fontSize={"lg"} color={"white"}>
-                  {movieDurationfunction(runtime)}
+                  {movieDurationfunction(movieVideos?.runtime)}
                 </Text>
               </Box>
             </Box>
 
             <Text>
-              {overview}{" "}
+              {movieVideos?.overview}{" "}
               <span className="pl-2 text-blue-500 hover:underline">
-                <a target="_blank" href={homepage}>
+                <a target="_blank" href={movieVideos?.homepage}>
                   Visit Official page
                 </a>
               </span>

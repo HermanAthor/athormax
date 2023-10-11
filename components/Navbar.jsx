@@ -23,20 +23,20 @@ import {
 export default function Navbar() {
   const [movieData, setMovieData] = useRecoilState(movieDataState); //handling movieData from handleSearch results
   // search state provided by recoil
-  const [scrollBg, setScrollBg] = useState(false); // State used to handle background color on the Navbar
+  //const [scrollBg, setScrollBg] = useState(false); // State used to handle background color on the Navbar
 
   const [search, setSearch] = useRecoilState(searchState);
   const [select, setSelect] = useState("multi");
 
   // function to determine the backgroud color of the Navbar
-  const changBgColor = () => {
-    if (window.scrollY >= 600) {
-      setScrollBg(true);
-    } else {
-      setScrollBg(false);
-    }
-  };
-  window.addEventListener("scroll", changBgColor);
+  // const changBgColor = () => {
+  //   if (window.scrollY >= 600) {
+  //     setScrollBg(true);
+  //   } else {
+  //     setScrollBg(false);
+  //   }
+  // };
+  // window.addEventListener("scroll", changBgColor);
 
   // function to handle the fetching of search data
 
@@ -56,9 +56,7 @@ export default function Navbar() {
 
   return (
     <div
-      className={`flex flex-col justify-start items-start md:items-center fixed top-0 w-full ${
-        scrollBg ? " bg-gray-900" : "bg-gray-700"
-      } text-white px-5 md:px-10 py-5  z-50`}
+      className={`flex flex-col justify-start items-start md:items-center fixed top-0 w-full bg-gray-700 text-white px-5 md:px-10 py-5  z-50`}
     >
       <div className="flex justify-between w-full items-center">
         <div className="flex flex-row items-center gap-4 md:gap-10">

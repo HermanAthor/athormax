@@ -4,7 +4,7 @@ const options = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization: `Bearer ${process.env.API_ACCESS_TOKEN}`,
+    Authorization: `Bearer ${process.env.API_TOKEN_KEY}`,
   },
 };
 

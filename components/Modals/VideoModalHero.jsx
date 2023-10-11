@@ -41,8 +41,8 @@ function VideoModalHero({ movieVideos, isOpen, onClose }) {
     if (type == "Trailer" && site == "YouTube") {
       embededVideos.push(
         <iframe
-          width={"90%"}
-          height={"90%"}
+          width={"80%"}
+          height={"80%"}
           src={`https://www.youtube.com/embed/${key}`}
           title={video.name}
           frameborder="0"
@@ -101,7 +101,7 @@ function VideoModalHero({ movieVideos, isOpen, onClose }) {
               </Box>
             </Box>
 
-            <Text>
+            <Text fontSize={"lg"}>
               {movieVideos?.overview}{" "}
               <span className="pl-2 text-blue-500 hover:underline">
                 <a target="_blank" href={movieVideos?.homepage}>
@@ -120,21 +120,8 @@ function VideoModalHero({ movieVideos, isOpen, onClose }) {
         open={videoModal.isOpen}
         close={videoModal.onClose}
       />
-      {/* {true && (
-        <div className="absolute inset-0 w-full h-full bg-black">
-          {embededVideos.map((videoArray) => (
-            <div>{videoArray}</div>
-          ))}
-        </div>
-      )} */}
     </div>
   );
 }
 
 export default VideoModalHero;
-
-/*
-<iframe width="560" height="315" src="https://www.youtube.com/embed/zrv_SAnnmtk?si=fdqkJQ61fciOcEQH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-
-*/

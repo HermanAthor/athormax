@@ -31,13 +31,10 @@ function ListCategories({ data, category }) {
     <div className="bg-black">
       <div className="flex justify-between items-center px-5">
         <h1 className="text-white font-selif text-3xl pl-4 pb-2">{category}</h1>
-        <button>Show all</button>
       </div>
       <Swiper
         navigation={true}
         modules={[Navigation, Pagination, Scrollbar, A11y]}
-        // spaceBetween={5}
-        // slidesPerView={6}
         breakpoints={{
           350: {
             slidesPerView: 2,
@@ -57,40 +54,43 @@ function ListCategories({ data, category }) {
           },
         }}
       >
-        {data?.map((movie) => {
-          const { backdrop_path, title, id } = movie;
-          if (backdrop_path) {
-            return (
-              <SwiperSlide key={id}>
-                <div className="bg-transparent relative ">
-                  <div className="h-[400px] w-full bg-transparent">
-                    <img
-                      src={`https://image.tmdb.org/t/p/w500${backdrop_path}`}
-                      alt="friends"
-                      className="h-full w-full object-cover"
-                    />
+        {data ? (
+          data.map((movie) => {
+            const { backdrop_path, title, id, poster_path } = movie;
+            if (backdrop_path) {
+              return (
+                <SwiperSlide key={id}>
+                  <div className="bg-transparent relative">
+                    <div className="h-[400px] w-full bg-transparent">
+                      <img
+                        src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+                        alt={title}
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
+                    <div className="absolute bottom-2 left-3 flex flex-row gap-4">
+                      <Button
+                        onClick={() => getMovieVideos(id)}
+                        variant={"solid"}
+                        colorScheme="blue"
+                      >
+                        Play
+                      </Button>
+                      <Link href={`/${id}`}>
+                        <Button rightIcon={<ArrowForwardIcon />}>More</Button>
+                      </Link>
+                    </div>
                   </div>
-                  <h6>{title}</h6>
-                  <div className=" absolute bottom-10 left-3 flex flex-row gap-4">
-                    <Button
-                      onClick={() => getMovieVideos(id)}
-                      variant={"solid"}
-                      colorScheme="blue"
-                    >
-                      Play
-                    </Button>
-                    <Link href={`/${id}`}>
-                      <Button rightIcon={<ArrowForwardIcon />}>More</Button>
-                    </Link>
-                  </div>
-                </div>
-              </SwiperSlide>
-            );
-          }
-        })}
+                </SwiperSlide>
+              );
+            }
+          })
+        ) : (
+          <p className="text-white text-9xl">No movies found</p>
+        )}
+
         <VideoModalHero
           movieVideos={videos}
-          data={data}
           isOpen={isOpen}
           onClose={onClose}
         />
@@ -100,3 +100,36 @@ function ListCategories({ data, category }) {
 }
 
 export default ListCategories;
+
+// {
+//   data?.map((movie) => {
+//     const { backdrop_path, title, id, poster_path } = movie;
+//     if (backdrop_path) {
+//       return (
+//         <SwiperSlide key={id}>
+//           <div className="bg-transparent relative ">
+//             <div className="h-[400px] w-full bg-transparent">
+//               <img
+//                 src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+//                 alt={title}
+//                 className="h-full w-full object-cover"
+//               />
+//             </div>
+//             <div className=" absolute bottom-2 left-3 flex flex-row gap-4">
+//               <Button
+//                 onClick={() => getMovieVideos(id)}
+//                 variant={"solid"}
+//                 colorScheme="blue"
+//               >
+//                 Play
+//               </Button>
+//               <Link href={`/${id}`}>
+//                 <Button rightIcon={<ArrowForwardIcon />}>More</Button>
+//               </Link>
+//             </div>
+//           </div>
+//         </SwiperSlide>
+//       );
+//     }
+//   });
+// }

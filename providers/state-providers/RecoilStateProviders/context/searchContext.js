@@ -9,3 +9,8 @@ export const movieDataState = atom({
   key: "movieData",
   default: [],
 });
+
+export const selectState = atom({
+  key: "selectState",
+  default: "multi",
+});

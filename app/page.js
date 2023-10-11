@@ -2,7 +2,7 @@
 import Hero from "@/components/Hero";
 import ListCategories from "@/components/ListCategories";
 import Search from "@/components/Search";
-import { fetchFilms, fetchUpComingMovies } from "@/libs/getMovies";
+import { fetchFilms } from "@/libs/getMovies";
 import { useQueries, useQuery } from "react-query";
 
 export default function Home() {

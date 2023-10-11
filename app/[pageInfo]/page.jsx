@@ -6,6 +6,7 @@ import Link from "next/link";
 import ListCategories from "@/components/ListCategories";
 import VideoModalHero from "@/components/Modals/VideoModalHero";
 import { useDisclosure } from "@chakra-ui/react";
+import Search from "@/components/Search";
 
 function MoviePage({ params }) {
   const [video, setVideo] = useState([]);
@@ -74,7 +75,8 @@ function MoviePage({ params }) {
 
   return (
     <div>
-      <div className="mt-28 md:mt-20">
+      <div className="mt-28 md:mt-20 ">
+        <Search />
         <div className="w-full h-screen relative overflow-clip ">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent  to-black"></div>{" "}
           <img

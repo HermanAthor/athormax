@@ -18,6 +18,7 @@ function MoviePage({ params }) {
   const { pageInfo } = params;
 
   useEffect(() => {
+    // fetching a single movie and all the needed details.
     async function fetchVideo() {
       try {
         const videoResponse = await fetchMovieVideo(pageInfo);
@@ -30,6 +31,7 @@ function MoviePage({ params }) {
         console.error("Error fetching video:", error);
       }
     }
+    // fetching similar movies by the movie id
     async function fetchSimilarMovies() {
       try {
         const movieUrl = `https://api.themoviedb.org/3/movie/${pageInfo}/similar`;
@@ -39,6 +41,7 @@ function MoviePage({ params }) {
         console.error("Error fetching video:", error);
       }
     }
+    // fetching recommended movies by the movie Id
     async function fetchRecommendedMovies() {
       try {
         const movieUrl = `https://api.themoviedb.org/3/movie/${pageInfo}/recommendations`;
@@ -52,7 +55,7 @@ function MoviePage({ params }) {
     fetchSimilarMovies();
     fetchVideo();
   }, [pageInfo]);
-
+  // fetching the videos for the movies when a user clicks to watch the video
   const getMovieVideos = async (pageInfo) => {
     const response = await fetchMovieVideo(pageInfo);
     setMovies(response);
@@ -75,7 +78,7 @@ function MoviePage({ params }) {
 
   return (
     <div>
-      <div className="mt-28 md:mt-20 ">
+      <div className=" mt-24 md:mt-20 ">
         <Search />
         <div className="w-full h-screen relative overflow-clip ">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent  to-black"></div>{" "}

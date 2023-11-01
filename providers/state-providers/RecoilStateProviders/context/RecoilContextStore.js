@@ -14,3 +14,8 @@ export const selectState = atom({
   key: "selectState",
   default: "multi",
 });
+
+export const searchComponentState = atom({
+  key: "searchComponentState",
+  default: false,
+});

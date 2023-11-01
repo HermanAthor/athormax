@@ -73,11 +73,19 @@ function ListCategories({ data, category }) {
                         onClick={() => getMovieVideos(id)}
                         variant={"solid"}
                         colorScheme="blue"
+                        bgColor={"blue"}
+                        className="bg-blue-500"
                       >
                         Play
                       </Button>
                       <Link href={`/${id}`}>
-                        <Button rightIcon={<ArrowForwardIcon />}>More</Button>
+                        <Button
+                          bgColor={"gray.200"}
+                          rightIcon={<ArrowForwardIcon />}
+                          className="bg-gray-400"
+                        >
+                          More
+                        </Button>
                       </Link>
                     </div>
                   </div>

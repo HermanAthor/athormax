@@ -6,13 +6,7 @@ import { fetchFilms } from "@/libs/getMovies";
 import { useQueries, useQuery } from "react-query";
 
 export default function Home() {
-  // const { data, error, isLoading } = useQuery("movies", fetchUpComingMovies);
-  // const playingNow = useQuery(
-  //   "upcoming",
-  //   fetchFilms(
-  //     "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1"
-  //   )
-  // );
+  console.log("ENV", process.env.API_ACCESS_TOKEN);
 
   const queries = [
     {

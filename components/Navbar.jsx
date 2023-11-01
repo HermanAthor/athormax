@@ -5,8 +5,9 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { useRecoilState } from "recoil";
 import {
   movieDataState,
+  searchComponentState,
   searchState,
-} from "@/providers/state-providers/RecoilStateProviders/context/searchContext";
+} from "@/providers/state-providers/RecoilStateProviders/context/RecoilContextStore";
 import { fetchFilms } from "@/libs/getMovies";
 import {
   Box,
@@ -22,6 +23,8 @@ import {
 
 export default function Navbar() {
   const [movieData, setMovieData] = useRecoilState(movieDataState); //handling movieData from handleSearch results
+  const [showSearchComponent, setShowSearchComponent] =
+    useRecoilState(searchComponentState);
   // search state provided by recoil
   //const [scrollBg, setScrollBg] = useState(false); // State used to handle background color on the Navbar
 
@@ -48,6 +51,8 @@ export default function Navbar() {
         const data = await fetchFilms(searchUrl);
         console.log("Search Movies", data);
         setMovieData(data);
+        setSearch("");
+        setShowSearchComponent(true);
       }
     } catch (error) {
       console.error("Error occurred while fetching results", error);
@@ -63,12 +68,7 @@ export default function Navbar() {
           <SortIcon className="text-2xl md:text-4xl" />
 
           <div className=" hidden md:flex flex-row items-center gap-3">
-            <SearchComp
-              handleSearch={handleSearch}
-              setSearch={setSearch}
-              search={search}
-              setSelect={setSelect}
-            />
+            <SearchComp handleSearch={handleSearch} setSelect={setSelect} />
           </div>
         </div>
         <div className="h-12">
@@ -89,19 +89,16 @@ export default function Navbar() {
       </div>
       <div>
         <div className="md:hidden flex justify-start flex-row items-center gap-3">
-          <SearchComp
-            handleSearch={handleSearch}
-            setSearch={setSearch}
-            search={search}
-            setSelect={setSelect}
-          />
+          <SearchComp handleSearch={handleSearch} setSelect={setSelect} />
         </div>
       </div>
     </div>
   );
 }
 
-const SearchComp = ({ handleSearch, setSearch, search, setSelect }) => {
+const SearchComp = ({ handleSearch, setSelect }) => {
+  const [search, setSearch] = useRecoilState(searchState);
+
   return (
     <>
       <div>

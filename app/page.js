@@ -1,6 +1,7 @@
 "use client";
 import Hero from "@/components/Hero";
 import ListCategories from "@/components/ListCategories";
+import Loader from "@/components/Loader";
 import Search from "@/components/Search";
 import { fetchFilms } from "@/libs/getMovies";
 import { useQueries, useQuery } from "react-query";
@@ -43,7 +44,7 @@ export default function Home() {
     nowPlayingMovies.isLoading ||
     popularMovies.isLoading
   ) {
-    return <p className="mt-32">Loading...</p>;
+    return <Loader />;
   }
 
   if (

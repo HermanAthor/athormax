@@ -18,6 +18,7 @@ import "./swipperstyles.css";
 import VideoModalHero from "./Modals/VideoModalHero";
 import { Box, Skeleton, Spinner, useDisclosure } from "@chakra-ui/react";
 import Link from "next/link";
+import Loader from "./Loader";
 
 function Hero() {
   // const [scrollBg, setScrollBg] = useState(false);                // Changing NavBar bg based on this state
@@ -34,19 +35,7 @@ function Hero() {
     return response;
   };
 
-  if (isLoading)
-    return (
-      <Box className="w-full h-screen flex justify-center items-center bg-gradient-to-b from-black via-[#2f1163] to-[#0d0d71]">
-        <Spinner
-          thickness="4px"
-          speed="0.65s"
-          emptyColor="gray.200"
-          color="blue.500"
-          size="xl"
-          label="Loading..."
-        />
-      </Box>
-    );
+  if (isLoading) return <Loader />;
   if (error) return <p>{error.message}</p>;
 
   console.log("Videos from the Hero section", videos);

@@ -22,8 +22,6 @@ import Link from "next/link";
 import Loader from "./Loader";
 
 function Hero() {
-  console.log(process.env);
-  console.log(process.env.API_KEY_TMDB);
   // const [scrollBg, setScrollBg] = useState(false);                // Changing NavBar bg based on this state
   const [videos, setVideos] = useState({}); // Setting state for the video object returned from the getMovieVideos() --So it can be passed to the video modal
   const { isOpen, onClose, onOpen } = useDisclosure(); // VideoModalHero state from chakre ui
@@ -40,8 +38,6 @@ function Hero() {
 
   if (isLoading) return <Loader />;
   if (error) return <p>{error.message}</p>;
-
-  console.log("Videos from the Hero section", videos);
 
   return (
     <div className="w-full h-screen relative overflow-clip ">

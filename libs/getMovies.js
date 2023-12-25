@@ -4,7 +4,7 @@ const options = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzY2IwYThhMDlkYzNlNjNiZDk0ZDY0ODE4ZTY4ZDI2MCIsInN1YiI6IjY1MTZhNDMzYTE5OWE2MDExYjIyMThlNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.yQqzQachWahYuD0tE1g1mase3QhoE4SyvFKc-xRhANE`,
+    Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY_TMDB}`,
   },
 };
 
@@ -13,7 +13,6 @@ export const fetchMovies = async () => {
 
   const response = await axios(url, options);
   const movies = response.data.results;
-  console.log(process.env.API_KEY_TMDB);
 
   return movies;
 };

@@ -13,6 +13,7 @@ export const fetchMovies = async () => {
 
   const response = await axios(url, options);
   const movies = response.data.results;
+  console.log(process.env.API_KEY_TMDB);
 
   return movies;
 };

@@ -38,7 +38,7 @@ export const fetchUpComingMovies = async () => {
 
 */
 
-// https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1
+// https://api.themoviedb.org/3/run demovie/upcoming?language=en-US&page=1
 
 //https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1
 

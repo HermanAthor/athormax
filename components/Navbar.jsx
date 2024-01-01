@@ -11,25 +11,19 @@ import {
 import { fetchFilms } from "@/libs/getMovies";
 import { animateScroll as scroll } from "react-scroll";
 import {
-  Box,
-  Button,
   IconButton,
   Input,
   InputGroup,
   InputLeftElement,
   InputRightElement,
   Select,
-  Text,
 } from "@chakra-ui/react";
 
 export default function Navbar() {
-  const [movieData, setMovieData] = useRecoilState(movieDataState); //handling movieData from handleSearch results
-  const [showSearchComponent, setShowSearchComponent] =
-    useRecoilState(searchComponentState);
-  // search state provided by recoil
-  //const [scrollBg, setScrollBg] = useState(false); // State used to handle background color on the Navbar
+  const [setMovieData] = useRecoilState(movieDataState); //handling movieData from handleSearch results
+  const [setShowSearchComponent] = useRecoilState(searchComponentState); // state to determine if i can show the search component or not
 
-  const [search, setSearch] = useRecoilState(searchState);
+  const [search] = useRecoilState(searchState); // search state provided by recoil
   const [select, setSelect] = useState("multi");
 
   //defining scroll effect when search button is clicked
@@ -37,27 +31,14 @@ export default function Navbar() {
     scroll.scrollToTop();
   };
 
-  // function to determine the backgroud color of the Navbar
-  // const changBgColor = () => {
-  //   if (window.scrollY >= 600) {
-  //     setScrollBg(true);
-  //   } else {
-  //     setScrollBg(false);
-  //   }
-  // };
-  // window.addEventListener("scroll", changBgColor);
-
-  // function to handle the fetching of search data
-
-  const handleSearch = async () => {
+  const handleSearch = async (e) => {
+    e.preventDefault();
     const searchUrl = `https://api.themoviedb.org/3/search/${select}?query=${search}&include_adult=false&language=en-US&page=1`;
 
     try {
       if (search.length > 2) {
         const data = await fetchFilms(searchUrl);
-
         setMovieData(data);
-        // setSearch("");
         setShowSearchComponent(true);
         scrollToTop();
       }
@@ -108,28 +89,32 @@ const SearchComp = ({ handleSearch, setSelect }) => {
 
   return (
     <>
-      <div>
-        <InputGroup>
-          <InputLeftElement pointerEvents="none">
-            <SearchOutlinedIcon />
-          </InputLeftElement>
-          <Input
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            type="text"
-            placeholder="Search Movies and TV Shows"
-            border={"0"}
-            outline={"none"}
-            color={"whiteAlpha.800"}
-          />
-          <InputRightElement>
-            <SelectComp setSelect={setSelect} />
-          </InputRightElement>
-        </InputGroup>
-      </div>
-      <IconButton onClick={() => handleSearch()}>
-        <SearchOutlinedIcon className=" text-2xl md:text-4xl" />
-      </IconButton>
+      <form onSubmit={handleSearch}>
+        <div className="flex justify-start flex-row items-center">
+          <div className="pr-5">
+            <InputGroup>
+              <InputLeftElement pointerEvents="none">
+                <SearchOutlinedIcon />
+              </InputLeftElement>
+              <Input
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                type="text"
+                placeholder="Search Movies and TV Shows"
+                border={"0"}
+                outline={"none"}
+                color={"whiteAlpha.800"}
+              />
+              <InputRightElement>
+                <SelectComp setSelect={setSelect} />
+              </InputRightElement>
+            </InputGroup>
+          </div>
+          <IconButton type="submit">
+            <SearchOutlinedIcon className=" text-2xl md:text-4xl" />
+          </IconButton>
+        </div>
+      </form>
     </>
   );
 };

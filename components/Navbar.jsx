@@ -18,6 +18,7 @@ import {
   InputRightElement,
   Select,
 } from "@chakra-ui/react";
+import Menu from "./Menu";
 
 export default function Navbar() {
   const [movieData, setMovieData] = useRecoilState(movieDataState); //handling movieData from handleSearch results
@@ -50,12 +51,13 @@ export default function Navbar() {
 
   return (
     <div
-      className={`flex flex-col justify-start items-start md:items-center fixed top-0 w-full bg-gray-700 text-white px-5 md:px-10 py-5  z-50`}
+      className={`flex flex-col justify-start items-start md:items-center fixed top-0 w-full bg-gray-700 text-white px-5 md:px-10 py-5  z-50 `}
     >
-      <div className="flex justify-between w-full items-center">
+      <div className="flex justify-between w-full items-center relative">
         <div className="flex flex-row items-center gap-4 md:gap-10">
-          <SortIcon className="text-2xl md:text-4xl" />
-
+          <IconButton onClick={() => alert("We are working on this")}>
+            <SortIcon className="text-2xl md:text-4xl" />
+          </IconButton>
           <div className=" hidden md:flex flex-row items-center gap-3">
             <SearchComp handleSearch={handleSearch} setSelect={setSelect} />
           </div>
@@ -81,6 +83,7 @@ export default function Navbar() {
           <SearchComp handleSearch={handleSearch} setSelect={setSelect} />
         </div>
       </div>
+      {/* <Menu /> */}
     </div>
   );
 }

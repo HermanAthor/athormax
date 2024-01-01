@@ -20,8 +20,9 @@ import {
 } from "@chakra-ui/react";
 
 export default function Navbar() {
-  const [setMovieData] = useRecoilState(movieDataState); //handling movieData from handleSearch results
-  const [setShowSearchComponent] = useRecoilState(searchComponentState); // state to determine if i can show the search component or not
+  const [movieData, setMovieData] = useRecoilState(movieDataState); //handling movieData from handleSearch results
+  const [showSearchComponent, setShowSearchComponent] =
+    useRecoilState(searchComponentState); // state to determine if i can show the search component or not
 
   const [search] = useRecoilState(searchState); // search state provided by recoil
   const [select, setSelect] = useState("multi");

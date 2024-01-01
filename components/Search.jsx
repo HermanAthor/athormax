@@ -31,12 +31,12 @@ function Search() {
     <div>
       {showSearchComponent && (
         <div
-          className={`mt-0 pt-20 bg-gradient-to-b from-black via-[#2f1163] to-[#0d0d71]`}
+          className={`mt-0 pt-32 md:pt-20 bg-gradient-to-b from-black via-[#2f1163] to-[#0d0d71]`}
         >
           <div className="flex justify-center items-center flex-col">
-            <Text fontSize={"6xl"} color={"white"}>
+            <p className=" text-xl md:text-6xl text-white py-2 md:py-5">
               {`Your Search Results(${filteredMovieData.length})`}
-            </Text>
+            </p>
           </div>
           <div>
             {filteredMovieData.length === 0 ? (
@@ -59,7 +59,7 @@ function Search() {
                         className="flex justify-between items-center"
                       >
                         <div className="bg-transparent">
-                          <div className="h-[400px] md:w-[368px] w-full bg-transparent relative">
+                          <div className="h-[400px]  w-full bg-transparent relative">
                             <img
                               src={`https://image.tmdb.org/t/p/w500${poster_path}`}
                               alt={title}

@@ -7,6 +7,7 @@ const options = {
     Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY_TMDB}`,
   },
 };
+//Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY_TMDB}`,
 
 export const fetchMovies = async () => {
   const url = "https://api.themoviedb.org/3/trending/movie/week?language=en-US";

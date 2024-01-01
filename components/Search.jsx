@@ -24,6 +24,10 @@ function Search() {
     setVideos(response);
     onOpen();
   };
+  // filter the movies
+  const filteredMovieData = movieData.filter((movie) => movie.poster_path);
+
+  console.log(filteredMovieData.length);
 
   return (
     <div>
@@ -33,11 +37,11 @@ function Search() {
         >
           <div className="flex justify-center items-center flex-col">
             <Text fontSize={"6xl"} color={"white"}>
-              {`Your Search Results(${movieData.length})`}
+              {`Your Search Results(${filteredMovieData.length})`}
             </Text>
           </div>
           <div>
-            {movieData.length === 0 ? (
+            {filteredMovieData.length === 0 ? (
               <div className="flex justify-center items-center flex-col pb-10">
                 <Text fontSize={"4xl"}>Nothing to show for your search</Text>
                 <Text fontSize={"2xl"} fontStyle={"italic"}>
@@ -46,7 +50,7 @@ function Search() {
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 py-5 pt-0 bg-gradient-to-b from-black via-[#2f1163] to-[#0d0d71] space-x-4 space-y-4">
-                {movieData?.map((movie) => {
+                {filteredMovieData?.map((movie) => {
                   const { backdrop_path, title, id, poster_path } = movie;
                   if (poster_path) {
                     return (

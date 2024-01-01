@@ -9,6 +9,7 @@ import {
   searchState,
 } from "@/providers/state-providers/RecoilStateProviders/context/RecoilContextStore";
 import { fetchFilms } from "@/libs/getMovies";
+import { animateScroll as scroll } from "react-scroll";
 import {
   Box,
   Button,
@@ -31,6 +32,11 @@ export default function Navbar() {
   const [search, setSearch] = useRecoilState(searchState);
   const [select, setSelect] = useState("multi");
 
+  //defining scroll effect when search button is clicked
+  const scrollToTop = () => {
+    scroll.scrollToTop();
+  };
+
   // function to determine the backgroud color of the Navbar
   // const changBgColor = () => {
   //   if (window.scrollY >= 600) {
@@ -49,10 +55,11 @@ export default function Navbar() {
     try {
       if (search.length > 2) {
         const data = await fetchFilms(searchUrl);
-        console.log("Search Movies", data);
+
         setMovieData(data);
-        setSearch("");
+        // setSearch("");
         setShowSearchComponent(true);
+        scrollToTop();
       }
     } catch (error) {
       console.error("Error occurred while fetching results", error);

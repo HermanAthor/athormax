@@ -27,8 +27,6 @@ function Search() {
   // filter the movies
   const filteredMovieData = movieData.filter((movie) => movie.poster_path);
 
-  console.log(filteredMovieData.length);
-
   return (
     <div>
       {showSearchComponent && (
@@ -43,7 +41,9 @@ function Search() {
           <div>
             {filteredMovieData.length === 0 ? (
               <div className="flex justify-center items-center flex-col pb-10">
-                <Text fontSize={"4xl"}>Nothing to show for your search</Text>
+                <Text fontSize={"4xl"}>
+                  Sorry, Nothing to show for your search
+                </Text>
                 <Text fontSize={"2xl"} fontStyle={"italic"}>
                   Try adjusting your select options accordingly
                 </Text>

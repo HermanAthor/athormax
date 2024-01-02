@@ -17,6 +17,10 @@ const menuData = [
 
 function Menu() {
   const [openMenu, setOpenMenu] = useRecoilState(menuState);
+  const workingOnit = () => {
+    setOpenMenu(false);
+    alert("Sorry, we are working on this please try again later");
+  };
   return (
     <div className="fixed top-6 left-0 md:w-fit w-full  text-black flex flex-col justify-between rounded-xl bg-slate-300 dark:bg-inherit h-screen overflow-auto pl-5 animate__animated animate__fadeInLeft">
       <div className="flex flex-col text-2xl">
@@ -40,9 +44,15 @@ function Menu() {
             ))}
           </Select>
         </div>
-        <p className="pl-3 pt-2">Movies</p>
-        <p className="pl-3 pt-2">Series</p>
-        <p className="pl-3 pt-2">My Watch list</p>
+        <a onClick={() => workingOnit()} className="pl-3 pt-2 cursor-pointer">
+          Movies
+        </a>
+        <a onClick={() => workingOnit()} className="pl-3 pt-2 cursor-pointer">
+          Series
+        </a>
+        <a onClick={() => workingOnit()} className="pl-3 pt-2 cursor-pointer">
+          My Watch list
+        </a>
       </div>
       <div className="flex flex-col pb-10 gap-7">
         <div className="flex flex-row items-center gap-3 ">

@@ -1,6 +1,8 @@
-import { IconButton } from "@chakra-ui/react";
+import { menuState } from "@/providers/state-providers/RecoilStateProviders/context/RecoilContextStore";
+import { IconButton, Select } from "@chakra-ui/react";
 import CloseIcon from "@mui/icons-material/Close";
 import React from "react";
+import { useRecoilState } from "recoil";
 
 const menuData = [
   { title: "Comedy", href: "#" },
@@ -14,21 +16,48 @@ const menuData = [
 ];
 
 function Menu() {
+  const [openMenu, setOpenMenu] = useRecoilState(menuState);
   return (
-    <div className="fixed top-6 left-0 md:w-fit w-full bg-white text-black flex flex-col ">
-      <div className="flex justify-between items-center text-black px-3 pt-2">
-        <div></div>
-        <IconButton>
-          <CloseIcon className="text-2xl md:text-4xl hover:text-red-400" />
-        </IconButton>
+    <div className="fixed top-6 left-0 md:w-fit w-full  text-black flex flex-col justify-between rounded-xl bg-slate-300 dark:bg-inherit h-screen overflow-auto pl-5 animate__animated animate__fadeInLeft">
+      <div className="flex flex-col text-2xl">
+        <div className="flex justify-between items-center text-black px-3 pt-2">
+          <div></div>
+          <IconButton onClick={() => setOpenMenu(false)}>
+            <CloseIcon className="text-2xl md:text-4xl hover:text-red-400" />
+          </IconButton>
+        </div>
+
+        <div className="pr-10 rounded pt-8">
+          <Select className="text-3xl  " id="genre" placeholder="Genres">
+            {menuData.map((menu) => (
+              <option
+                className=" cursor-auto hover:underline"
+                value={menu.title}
+                key={menu.title}
+              >
+                {menu.title}
+              </option>
+            ))}
+          </Select>
+        </div>
+        <p className="pl-3 pt-2">Movies</p>
+        <p className="pl-3 pt-2">Series</p>
+        <p className="pl-3 pt-2">My Watch list</p>
       </div>
-      <ul className="text-3xl px-8 py-2 ">
-        {menuData.map((menu) => (
-          <li className=" cursor-auto hover:underline" key={menu.title}>
-            {menu.title}
-          </li>
-        ))}
-      </ul>
+      <div className="flex flex-col pb-10 gap-7">
+        <div className="flex flex-row items-center gap-3 ">
+          <img
+            src="/hermandp.jpg"
+            alt="herman"
+            className=" h-5 w-5 md:h-12 md:w-12 object-cover border-2 border-blue-600 rounded-full"
+          />
+          <h6>Herman</h6>
+        </div>
+        <p>
+          &copy;
+          {`${new Date().getFullYear()} HAGmax. All rights reserved.`}
+        </p>
+      </div>
     </div>
   );
 }

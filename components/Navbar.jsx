@@ -4,6 +4,7 @@ import SortIcon from "@mui/icons-material/Sort";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { useRecoilState } from "recoil";
 import {
+  menuState,
   movieDataState,
   searchComponentState,
   searchState,
@@ -27,6 +28,7 @@ export default function Navbar() {
 
   const [search] = useRecoilState(searchState); // search state provided by recoil
   const [select, setSelect] = useState("multi");
+  const [openMenu, setOpenMenu] = useRecoilState(menuState); //open menubar
 
   //defining scroll effect when search button is clicked
   const scrollToTop = () => {
@@ -55,7 +57,7 @@ export default function Navbar() {
     >
       <div className="flex justify-between w-full items-center relative">
         <div className="flex flex-row items-center gap-4 md:gap-10">
-          <IconButton onClick={() => alert("We are working on this")}>
+          <IconButton onClick={() => setOpenMenu(true)}>
             <SortIcon className="text-2xl md:text-4xl" />
           </IconButton>
           <div className=" hidden md:flex flex-row items-center gap-3">
@@ -83,7 +85,7 @@ export default function Navbar() {
           <SearchComp handleSearch={handleSearch} setSelect={setSelect} />
         </div>
       </div>
-      {/* <Menu /> */}
+      {openMenu && <Menu />}
     </div>
   );
 }

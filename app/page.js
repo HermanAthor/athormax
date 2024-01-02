@@ -4,10 +4,12 @@ import ListCategories from "@/components/ListCategories";
 import Loader from "@/components/Loader";
 import Search from "@/components/Search";
 import { fetchFilms } from "@/libs/getMovies";
+import { menuState } from "@/providers/state-providers/RecoilStateProviders/context/RecoilContextStore";
 import { useQueries, useQuery } from "react-query";
+import { useRecoilState } from "recoil";
 
 export default function Home() {
-  console.log("ENV", process.env.API_ACCESS_TOKEN);
+  const [openMenu, setOpenMenu] = useRecoilState(menuState);
 
   const queries = [
     {
@@ -56,7 +58,7 @@ export default function Home() {
   }
 
   return (
-    <main className="flex flex-col ">
+    <main className="flex flex-col " onClick={() => setOpenMenu(false)}>
       <Search />
       <Hero />
       {/* <Search /> */}

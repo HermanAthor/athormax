@@ -19,7 +19,8 @@ import {
   InputRightElement,
   Select,
 } from "@chakra-ui/react";
-import Menu from "./Menu";
+import Menu from "./LeftMenu";
+import LeftMenu from "./LeftMenu";
 
 export default function Navbar() {
   const [movieData, setMovieData] = useRecoilState(movieDataState); //handling movieData from handleSearch results
@@ -85,7 +86,7 @@ export default function Navbar() {
           <SearchComp handleSearch={handleSearch} setSelect={setSelect} />
         </div>
       </div>
-      {openMenu && <Menu />}
+      {openMenu && <LeftMenu />}
     </div>
   );
 }

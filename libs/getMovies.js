@@ -25,23 +25,14 @@ export const fetchMovieVideo = async (id) => {
   const movies = response.data;
   return movies;
 };
-/*
-THIS WAS A FUNCTION THAT WAS USED TO FETCH UPCOMING MOVIES BEFORE I WROTE A REUSABLE ONE
 
-export const fetchUpComingMovies = async () => {
-  const url =
-    "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=2";
+export const fetchGenres = async (id) => {
+  const url = "https://api.themoviedb.org/3/genre/movie/list?language=en";
 
   const response = await axios(url, options);
-  const movies = response.data.results;
+  const movies = response.data;
   return movies;
 };
-
-*/
-
-// https://api.themoviedb.org/3/run demovie/upcoming?language=en-US&page=1
-
-//https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1
 
 //Nowplaying
 export const fetchFilms = async (url) => {

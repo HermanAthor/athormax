@@ -49,7 +49,7 @@ function Search() {
                 </Text>
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 py-5 pt-0 bg-gradient-to-b from-black via-[#2f1163] to-[#0d0d71] space-x-4 space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 py-5 pt-5">
                 {filteredMovieData?.map((movie) => {
                   const { backdrop_path, title, id, poster_path } = movie;
                   if (poster_path) {

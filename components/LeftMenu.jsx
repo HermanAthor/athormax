@@ -58,38 +58,20 @@ function LeftMenu() {
             </MenuButton>
             <MenuList fontSize={"3xl"}>
               {genres?.map((genre) => (
-                <MenuItem key={genre.id}>
+                <MenuItem key={genre.id} onClick={() => setOpenMenu(false)}>
                   <Link href={`/movies/genres/${genre.id}`}>{genre.name}</Link>
                 </MenuItem>
               ))}
-              {/* <MenuItem>Download</MenuItem>
-              
-              <MenuItem>Mark as Draft</MenuItem>
-              <MenuItem>Delete</MenuItem>
-              <MenuItem>Attend a Workshop</MenuItem> */}
             </MenuList>
           </Menu>
         </div>
-
-        {/* <div className="pr-10 rounded pt-8">
-          <Select className="text-3xl  " id="genre" placeholder="Genres">
-            {genres?.map((genre) => (
-              <option
-                className=" cursor-auto hover:underline"
-                value={genre.name}
-                key={genre.id}
-              >
-                <Link href={"/"}>{genre.name}</Link>
-              </option>
-            ))}
-          </Select>
-        </div> */}
         <div className="flex gap-1 flex-col pr-10">
           {menuData?.map((genre) => (
             <a
               className=" cursor-auto hover:bg-slate-500 hover:rounded-3xl pl-5"
               value={genre.name}
               key={genre.id}
+              onClick={() => workingOnit()}
             >
               {genre.name}
             </a>

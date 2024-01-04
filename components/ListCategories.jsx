@@ -62,11 +62,13 @@ function ListCategories({ data, category }) {
                 <SwiperSlide key={id}>
                   <div className="bg-transparent relative">
                     <div className="h-[400px] w-full bg-transparent">
-                      <img
-                        src={`https://image.tmdb.org/t/p/w500${poster_path}`}
-                        alt={title}
-                        className="h-full w-full object-cover"
-                      />
+                      <Link href={`/${id}`}>
+                        <img
+                          src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+                          alt={title}
+                          className="h-full w-full object-cover"
+                        />
+                      </Link>
                     </div>
                     <div className="absolute bottom-2 left-3 flex flex-row gap-4">
                       <Button
@@ -108,36 +110,3 @@ function ListCategories({ data, category }) {
 }
 
 export default ListCategories;
-
-// {
-//   data?.map((movie) => {
-//     const { backdrop_path, title, id, poster_path } = movie;
-//     if (backdrop_path) {
-//       return (
-//         <SwiperSlide key={id}>
-//           <div className="bg-transparent relative ">
-//             <div className="h-[400px] w-full bg-transparent">
-//               <img
-//                 src={`https://image.tmdb.org/t/p/w500${poster_path}`}
-//                 alt={title}
-//                 className="h-full w-full object-cover"
-//               />
-//             </div>
-//             <div className=" absolute bottom-2 left-3 flex flex-row gap-4">
-//               <Button
-//                 onClick={() => getMovieVideos(id)}
-//                 variant={"solid"}
-//                 colorScheme="blue"
-//               >
-//                 Play
-//               </Button>
-//               <Link href={`/${id}`}>
-//                 <Button rightIcon={<ArrowForwardIcon />}>More</Button>
-//               </Link>
-//             </div>
-//           </div>
-//         </SwiperSlide>
-//       );
-//     }
-//   });
-// }

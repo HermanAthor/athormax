@@ -60,11 +60,13 @@ function Search() {
                       >
                         <div className="bg-transparent">
                           <div className="h-[400px]  w-full bg-transparent relative">
-                            <img
-                              src={`https://image.tmdb.org/t/p/w500${poster_path}`}
-                              alt={title}
-                              className="h-full w-[368px] object-cover"
-                            />
+                            <Link href={`/${id}`}>
+                              <img
+                                src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+                                alt={title}
+                                className="h-full w-[368px] object-cover"
+                              />
+                            </Link>
                             <div className=" absolute bottom-3 left-3 flex flex-row gap-4">
                               <Button
                                 onClick={() => getMovieVideos(id)}

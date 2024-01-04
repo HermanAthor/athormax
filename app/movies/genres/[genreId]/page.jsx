@@ -35,15 +35,15 @@ async function GenrePage({ params }) {
   return (
     <div className="pt-20 text-black bg-gradient-to-b from-black via-[#2f1163] to-[#0d0d71]">
       <Genres
-        filteredGenre={filteredGenre}
+        filteredGenre={`Upcoming ${filteredGenre}`}
         filteredMovieData={filteredUpcomingMovies}
       />
       <Genres
-        filteredGenre={filteredGenre}
+        filteredGenre={`Now Playing ${filteredGenre}`}
         filteredMovieData={filteredNowPlayingMovies}
       />
       <Genres
-        filteredGenre={filteredGenre}
+        filteredGenre={`Popular ${filteredGenre}`}
         filteredMovieData={filteredPopularMovies}
       />
     </div>

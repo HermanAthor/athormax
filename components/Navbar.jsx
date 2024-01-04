@@ -21,6 +21,7 @@ import {
 } from "@chakra-ui/react";
 import Menu from "./LeftMenu";
 import LeftMenu from "./LeftMenu";
+import Link from "next/link";
 
 export default function Navbar() {
   const [movieData, setMovieData] = useRecoilState(movieDataState); //handling movieData from handleSearch results
@@ -66,11 +67,13 @@ export default function Navbar() {
           </div>
         </div>
         <div className="h-12">
-          <img
-            src="/hagmax.svg"
-            alt="hagmax"
-            className="h-full w-28 md:w-28 lg:w-full object-contain"
-          />
+          <Link href={"/"}>
+            <img
+              src="/hagmax.svg"
+              alt="hagmax"
+              className="h-full w-28 md:w-28 lg:w-full object-contain"
+            />
+          </Link>
         </div>
         <div className="flex flex-row items-center gap-3 ">
           <img
@@ -143,7 +146,6 @@ const SelectComp = ({ setSelect }) => {
         <option value="tv">TV</option>
         <option value="collection">Collection</option>
         <option value="person">Keyword</option>
-        <option value="company">Company</option>
       </Select>
     </div>
   );

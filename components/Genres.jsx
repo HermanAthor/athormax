@@ -12,7 +12,7 @@ function Genres({ filteredMovieData, filteredGenre }) {
     <div className="md:py-5 pt-12 md:pt-0 pl-2 ">
       <div>
         <p className="md:text-3xl pt-3 text-xl text-gray-200">
-          Upcoming {filteredGenre}
+          {filteredGenre}
         </p>
       </div>
       {moviesWithPosters.length === 0 ? (
@@ -31,11 +31,13 @@ function Genres({ filteredMovieData, filteredGenre }) {
                 >
                   <div className="bg-transparent">
                     <div className="h-[400px]  w-full bg-transparent relative">
-                      <img
-                        src={`https://image.tmdb.org/t/p/w500${poster_path}`}
-                        alt={title}
-                        className="h-full w-[368px] object-cover"
-                      />
+                      <Link href={`/${id}`}>
+                        <img
+                          src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+                          alt={title}
+                          className="h-full w-[368px] object-cover"
+                        />
+                      </Link>
                       <div className=" absolute bottom-3 left-3 flex flex-row gap-4">
                         {/* <Button
                         onClick={() => getMovieVideos(id)}

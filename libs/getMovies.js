@@ -35,7 +35,9 @@ export const fetchGenres = async (id) => {
 
 //function to fetch movies
 export const fetchFilms = async (url) => {
-  const response = await axios(url, options);
+  const response = await axios(url, options, {
+    cache: "no-cache",
+  });
   const movies = response.data.results;
   return movies;
 };

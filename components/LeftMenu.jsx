@@ -17,8 +17,9 @@ import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 
 const menuData = [
-  { name: "Movies", href: "#" },
-  { name: "TV", href: "#" },
+  { name: "Home", href: "/" },
+  { name: "Movies", href: "/movies" },
+  { name: "TV", href: "/tv" },
   { name: "My Watch List", href: "#" },
 ];
 
@@ -32,11 +33,12 @@ function LeftMenu() {
     };
     getGenres();
   }, []);
-  console.log(genres);
 
   const workingOnit = () => {
     setOpenMenu(false);
-    alert("Sorry, we are working on this please try again later");
+    alert(
+      "Sorry, we are working on this please try again later to be able to manage your account"
+    );
   };
   return (
     <div className="fixed top-6 left-0 md:w-fit w-full  text-black flex flex-col justify-between rounded-xl bg-slate-300 dark:bg-inherit h-screen overflow-auto pl-5 animate__animated animate__fadeInLeft">
@@ -67,19 +69,23 @@ function LeftMenu() {
         </div>
         <div className="flex gap-1 flex-col pr-10">
           {menuData?.map((genre) => (
-            <a
+            <Link
+              href={genre.href}
               className=" cursor-auto hover:bg-slate-500 hover:rounded-3xl pl-5"
               value={genre.name}
               key={genre.id}
-              onClick={() => workingOnit()}
+              onClick={() => setOpenMenu(false)}
             >
               {genre.name}
-            </a>
+            </Link>
           ))}
         </div>
       </div>
       <div className="flex flex-col pb-10 gap-7">
-        <div className="flex flex-row items-center gap-3 ">
+        <div
+          className="flex flex-row items-center gap-3 "
+          onClick={() => workingOnit()}
+        >
           <img
             src="/hermandp.jpg"
             alt="herman"

@@ -7,7 +7,6 @@ const options = {
     Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY_TMDB}`,
   },
 };
-//Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY_TMDB}`,
 
 export const fetchMovies = async () => {
   const url = "https://api.themoviedb.org/3/trending/movie/week?language=en-US";
@@ -34,7 +33,7 @@ export const fetchGenres = async (id) => {
   return movies;
 };
 
-//Nowplaying
+//function to fetch movies
 export const fetchFilms = async (url) => {
   const response = await axios(url, options);
   const movies = response.data.results;

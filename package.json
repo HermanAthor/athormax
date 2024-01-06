@@ -27,7 +27,8 @@
     "react-scroll": "^1.9.0",
     "react-slick": "^0.29.0",
     "recoil": "^0.7.7",
-    "swiper": "^10.3.0"
+    "swiper": "^10.3.0",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/node": "20.10.6",

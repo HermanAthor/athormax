@@ -4,7 +4,7 @@ const options = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY_TMDB}`,
+    Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzY2IwYThhMDlkYzNlNjNiZDk0ZDY0ODE4ZTY4ZDI2MCIsInN1YiI6IjY1MTZhNDMzYTE5OWE2MDExYjIyMThlNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.yQqzQachWahYuD0tE1g1mase3QhoE4SyvFKc-xRhANE`,
   },
 };
 

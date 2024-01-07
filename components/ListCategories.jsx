@@ -28,9 +28,9 @@ function ListCategories({ data, category }) {
     onOpen();
   };
   return (
-    <div className="bg-black">
-      <div className="flex justify-between items-center px-5">
-        <h1 className="text-white font-selif text-3xl pl-4 pb-2">{category}</h1>
+    <div className="bg-black px-10">
+      <div className="flex justify-between items-center">
+        <h1 className="text-white font-selif text-3xl pb-2 pt-3">{category}</h1>
       </div>
       <Swiper
         navigation={true}

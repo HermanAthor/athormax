@@ -11,6 +11,8 @@ import VideoModal from "./Modals/VideoModal";
 import { fetchMovieVideo, fetchUpComingMovies } from "@/libs/getMovies";
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 import { useQuery } from "react-query";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import AddIcon from "@mui/icons-material/Add";
 
 import Link from "next/link";
 import VideoModalHero from "./Modals/VideoModalHero";
@@ -60,8 +62,14 @@ function ListCategories({ data, category }) {
             if (backdrop_path) {
               return (
                 <SwiperSlide key={id}>
-                  <div className="bg-transparent relative">
-                    <div className="h-[400px] w-full bg-transparent">
+                  <div
+                    className="relative group h-72 md:h-96 hover:border-2 hover:border-purple-800"
+                    // style={{
+                    //   background: `url(${poster_path})`,
+                    //   backgroundSize: "cover",
+                    // }}
+                  >
+                    <div className="h-full w-full bg-transparent">
                       <Link href={`/${id}`}>
                         <img
                           src={`https://image.tmdb.org/t/p/w500${poster_path}`}
@@ -70,26 +78,31 @@ function ListCategories({ data, category }) {
                         />
                       </Link>
                     </div>
-                    <div className="absolute bottom-2 left-3 flex flex-row gap-4">
-                      <Button
-                        onClick={() => getMovieVideos(id)}
-                        variant={"solid"}
-                        colorScheme="blue"
-                        bgColor={"blue"}
-                        className="bg-blue-500"
-                      >
-                        Play
-                      </Button>
-                      <Link href={`/${id}`}>
-                        <Button
-                          bgColor={"gray.200"}
-                          rightIcon={<ArrowForwardIcon />}
-                          className="bg-gray-400"
-                        >
-                          More
-                        </Button>
-                      </Link>
+                    {/* <Link href={`/${id}`}> */}
+                    <div className="overlay absolute top-0 left-0 w-fit h-full bg-[#181818] bg-opacity-0 hidden group-hover:flex group-hover:bg-opacity-80 transition-all duration-500 ">
+                      <div className="relative">
+                        <div className=" absolute bottom-3 left-32">
+                          <div className="flex flex-row gap-1">
+                            <button
+                              onClick={() => getMovieVideos(id)}
+                              type="button"
+                              class="text-white bg-blue-700 hover:bg-blue-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            >
+                              <PlayArrowIcon fontSize="small" />
+                              <span class="sr-only">Icon description</span>
+                            </button>
+                            <button
+                              type="button"
+                              class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            >
+                              <AddIcon fontSize="small" />
+                              <span class="sr-only">Icon description</span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
                     </div>
+                    {/* </Link> */}
                   </div>
                 </SwiperSlide>
               );

@@ -1,6 +1,7 @@
 import ListCategories from "@/components/ListCategories";
 import Search from "@/components/Search";
 import SearchComp from "@/components/SearchComp";
+import SearchTerms from "@/components/SearchTerms";
 import { fetchFilms } from "@/libs/getMovies";
 import React from "react";
 
@@ -12,6 +13,7 @@ async function SearchPage() {
   return (
     <div className="mt-20">
       <SearchComp />
+      <SearchTerms />
       <Search />
       <ListCategories data={movies} category={"Trending Movies"} />
       <ListCategories data={series} category={"Trending Series"} />

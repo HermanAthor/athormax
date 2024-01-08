@@ -23,3 +23,8 @@ export const menuState = atom({
   key: "menuState",
   default: false,
 });
+
+export const searcTerm = atom({
+  key: "searchTerm",
+  default: "",
+});

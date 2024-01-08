@@ -62,13 +62,7 @@ function ListCategories({ data, category }) {
             if (backdrop_path) {
               return (
                 <SwiperSlide key={id}>
-                  <div
-                    className="relative group h-72 md:h-96 hover:border-2 hover:border-purple-800"
-                    // style={{
-                    //   background: `url(${poster_path})`,
-                    //   backgroundSize: "cover",
-                    // }}
-                  >
+                  <div className="relative group h-72 md:h-96 hover:border-2 hover:border-purple-800">
                     <div className="h-full w-full bg-transparent">
                       <Link href={`/${id}`}>
                         <img

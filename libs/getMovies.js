@@ -25,7 +25,7 @@ export const fetchMovieVideo = async (id) => {
   return movies;
 };
 
-export const fetchGenres = async (id) => {
+export const fetchGenres = async () => {
   const url = "https://api.themoviedb.org/3/genre/movie/list?language=en";
 
   const response = await axios(url, options);

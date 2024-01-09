@@ -32,9 +32,7 @@ function Search() {
   return (
     <div>
       {showSearchComponent && (
-        <div
-          className={`mt-0 bg-gradient-to-b from-black via-[#2f1163] to-[#0d0d71]`}
-        >
+        <div className={`mt-0 bg-black`}>
           <div className="flex justify-center items-center flex-col">
             <p className=" text-xl md:text-6xl text-white py-2 md:py-5">
               {`Your Search Results(${filteredMovieData.length})`}
@@ -51,12 +49,12 @@ function Search() {
                 </Text>
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 py-5 pt-5">
+              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 py-5 pt-5 gap-2">
                 {filteredMovieData?.map((movie) => {
                   const { backdrop_path, title, id, poster_path } = movie;
                   if (poster_path) {
                     return (
-                      <div className="relative group h-72 md:h-96 hover:border-2 hover:border-purple-800">
+                      <div className="relative group h-72 md:h-96 hover:border-4 hover:border-purple-800">
                         <div className="h-full w-full bg-transparent">
                           <Link href={`/${id}`}>
                             <img
@@ -69,7 +67,7 @@ function Search() {
 
                         <div className="overlay absolute top-0 left-0 w-fit h-full bg-[#181818] bg-opacity-0 hidden group-hover:flex group-hover:bg-opacity-80 transition-all duration-500 ">
                           <div className="relative">
-                            <div className=" absolute bottom-3 left-32">
+                            <div className=" absolute bottom-3 left-40">
                               <div className="flex flex-row gap-1">
                                 <button
                                   //onClick={() => getMovieVideos(id)}

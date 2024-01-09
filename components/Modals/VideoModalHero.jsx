@@ -16,19 +16,15 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { useState } from "react";
 import VideoPlayer from "./VideoPlayer";
 import { movieDurationfunction } from "@/libs/getDuration";
-//import PlayCircleFilledWhiteOutlinedIcon from "@mui/icons-material/PlayCircleFilledWhiteOutlined";
 
 function VideoModalHero({ movieVideos, isOpen, onClose }) {
   const videoModal = useDisclosure();
-  console.log(movieVideos);
 
-  // destructuring the movieVideos
-  // function to get the duration of the video and it should return in this format --- 1h 40m
-  // function movieDuration() {
-  //   const hours = Math.floor(runtime / 60);
-  //   const minutes = runtime % 60;
-  //   return `${hours}h${minutes > 0 ? ` ${minutes}m` : ""}`;
-  // }
+  // function to play video and close the modal
+  const playAndClose = () => {
+    videoModal.onOpen();
+    onClose();
+  };
 
   // function to get the embeded Youtube videos
 
@@ -41,8 +37,9 @@ function VideoModalHero({ movieVideos, isOpen, onClose }) {
     if (type == "Trailer" && site == "YouTube") {
       embededVideos.push(
         <iframe
-          width={"80%"}
-          height={"80%"}
+          className="pr-10"
+          width={"100%"}
+          height={"70%"}
           src={`https://www.youtube.com/embed/${key}`}
           title={video.name}
           frameborder="0"
@@ -83,7 +80,7 @@ function VideoModalHero({ movieVideos, isOpen, onClose }) {
               />
               <Box className="absolute inset-1/2 transform -translate-x-1/2 -translate-y-1/2 text-blue-400 ">
                 <button
-                  onClick={videoModal.onOpen}
+                  onClick={playAndClose}
                   className=" bg-transparent rounded-full p-3 border-2 border-blue-400"
                 >
                   <PlayArrowIcon className="text-7xl" fontSize="large" />

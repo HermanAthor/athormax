@@ -72,7 +72,6 @@ function ListCategories({ data, category }) {
                         />
                       </Link>
                     </div>
-                    {/* <Link href={`/${id}`}> */}
                     <div className="overlay absolute top-0 left-0 w-fit h-full bg-[#181818] bg-opacity-0 hidden group-hover:flex group-hover:bg-opacity-80 transition-all duration-500 ">
                       <div className="relative">
                         <div className=" absolute bottom-3 left-32">
@@ -96,7 +95,6 @@ function ListCategories({ data, category }) {
                         </div>
                       </div>
                     </div>
-                    {/* </Link> */}
                   </div>
                 </SwiperSlide>
               );

@@ -70,7 +70,7 @@ function Search() {
                             <div className=" absolute bottom-3 left-40">
                               <div className="flex flex-row gap-1">
                                 <button
-                                  //onClick={() => getMovieVideos(id)}
+                                  onClick={() => getMovieVideos(id)}
                                   type="button"
                                   className="text-white bg-blue-700 hover:bg-blue-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                 >

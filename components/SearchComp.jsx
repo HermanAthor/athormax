@@ -13,14 +13,15 @@ import {
 import { useRecoilState } from "recoil";
 import Search from "./Search";
 
-function SearchComp({ data }) {
+function SearchComp({ data, filteredGenre }) {
   const [search, setSearch] = useRecoilState(searchState);
   const [movieData, setMovieData] = useRecoilState(movieDataState); //handling movieData from handleSearch results
   const [showSearchComponent, setShowSearchComponent] =
     useRecoilState(searchComponentState); // state to determine if i can show the search component or not
 
-  const searchTerms = data.genres;
+  const searchTerms = data?.genres;
   //defining scroll effect when search button is clicked
+
   const scrollToTop = () => {
     scroll.scrollToTop();
   };
@@ -49,10 +50,11 @@ function SearchComp({ data }) {
           <input
             onChange={(e) => setSearch(e.target.value)}
             type="text"
-            placeholder="What are you looking for?"
+            placeholder={
+              filteredGenre ? filteredGenre : "What are you looking for?"
+            }
             className="w-full bg-transparent outline-none text-xl"
           />
-          <button type="submit">search</button>
         </form>
       </div>
       <SearchTerms searchTerms={searchTerms} />

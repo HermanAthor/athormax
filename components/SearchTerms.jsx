@@ -1,12 +1,9 @@
 import { fetchGenres } from "@/libs/getMovies";
 import React from "react";
 
-async function SearchTerms() {
-  const data = await fetchGenres();
-  const searchTerms = data.genres;
-
+function SearchTerms({ searchTerms }) {
   return (
-    <div className="bg-black text-white px-10 pt-3 w-full">
+    <div className="bg-black text-white pt-3 w-full">
       <ul className="px-3 flex flex-row items-center overflow-x-auto gap-3 w-full no-scrollbar">
         {searchTerms.map((term) => (
           <li

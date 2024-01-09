@@ -5,6 +5,7 @@ import { Button, Spinner } from "@chakra-ui/react";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
+import { v4 as uuidv4 } from "uuid";
 
 function ExperimentalMovieCard({ filteredMovieData, filteredGenre }) {
   const [movies, setMovies] = useState(filteredMovieData);

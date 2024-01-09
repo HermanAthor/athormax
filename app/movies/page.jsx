@@ -9,7 +9,7 @@ async function MoviesPage() {
   return (
     <div
       key={uuidv4()}
-      className="pt-3 text-black bg-gradient-to-b from-black via-[#2f1163] to-[#0d0d71]"
+      className="pt-3g text-black bg-gradient-to-b from-black via-[#2f1163] to-[#0d0d71]"
     >
       <ExperimentalMovieCard filteredMovieData={movies} />
     </div>

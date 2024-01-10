@@ -22,8 +22,9 @@ import {
 import Menu from "./LeftMenu";
 import LeftMenu from "./LeftMenu";
 import Link from "next/link";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "@/libs/firebase-config";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const [movieData, setMovieData] = useRecoilState(movieDataState); //handling movieData from handleSearch results
@@ -34,6 +35,8 @@ export default function Navbar() {
   const [select, setSelect] = useState("multi");
   const [openMenu, setOpenMenu] = useRecoilState(menuState); //open menubar
   const [activeUser, setActiveUser] = useState({});
+  const router = useRouter();
+  const dummyUser = {};
 
   //getting logged in user
   onAuthStateChanged(auth, (user) => {
@@ -42,6 +45,15 @@ export default function Navbar() {
       setActiveUser(user);
     }
   });
+  const logOut = async () => {
+    await signOut(auth);
+    router.refresh();
+  };
+
+  const profileDisplay = activeUser.displayName
+    ? activeUser?.displayName
+    : activeUser?.email;
+  console.log(profileDisplay);
 
   const displayImage = "/dummy-profile.jpg";
 
@@ -78,7 +90,6 @@ export default function Navbar() {
           <div className=" hidden md:flex flex-row items-center gap-3">
             <div>Movies</div>
             <div>Series</div>
-            {/* <SearchComp handleSearch={handleSearch} setSelect={setSelect} /> */}
           </div>
         </div>
         <div className="h-12">
@@ -94,91 +105,28 @@ export default function Navbar() {
           <Link href={"/search"}>
             <SearchOutlinedIcon className=" text-2xl md:text-4xl text-black" />
           </Link>
-          <div className="border-4 rounded-full border-purple-600">
+          <div
+            className="border-4 rounded-full border-purple-600"
+            onClick={logOut}
+          >
             <img
               src={activeUser?.photoURL ? activeUser?.photoURL : displayImage}
               alt="herman"
               className=" h-7 w-7 md:h-12 md:w-12 object-cover rounded-full"
             />
           </div>
-          <h6 className="hidden md:inline">
-            {activeUser ? (
-              activeUser?.displayName ? (
-                activeUser?.displayName
-              ) : (
-                activeUser?.email
-              )
+          <div className="hidden md:inline">
+            {profileDisplay === undefined || profileDisplay === null ? (
+              <div>
+                <Link href={"/register/signin"}>Sign in</Link>
+              </div>
             ) : (
-              <Link href={"/register/signin"}>
-                <span>Sign in</span>
-              </Link>
+              <div>{profileDisplay}</div>
             )}
-          </h6>
+          </div>
         </div>
       </div>
-      {/* <div>
-        <div className="md:hidden flex justify-start flex-row items-center gap-3">
-          <SearchComp handleSearch={handleSearch} setSelect={setSelect} />
-        </div>
-      </div> */}
       {openMenu && <LeftMenu />}
     </div>
   );
 }
-
-const SearchComp = ({ handleSearch, setSelect }) => {
-  const [search, setSearch] = useRecoilState(searchState);
-
-  return (
-    <>
-      <form onSubmit={handleSearch}>
-        <div className="flex justify-start flex-row items-center">
-          <div className="pr-5">
-            <InputGroup>
-              <InputLeftElement pointerEvents="none">
-                <SearchOutlinedIcon />
-              </InputLeftElement>
-              <Input
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                type="text"
-                placeholder="Search Movies and TV Shows"
-                border={"0"}
-                outline={"none"}
-                color={"whiteAlpha.800"}
-              />
-              <InputRightElement>
-                <SelectComp setSelect={setSelect} />
-              </InputRightElement>
-            </InputGroup>
-          </div>
-          <IconButton type="submit">
-            <SearchOutlinedIcon className=" text-2xl md:text-4xl" />
-          </IconButton>
-        </div>
-      </form>
-    </>
-  );
-};
-
-const SelectComp = ({ setSelect }) => {
-  return (
-    <div>
-      <Select
-        onChange={(e) => setSelect(e.target.value)}
-        color={"gray.900"}
-        width={"100%"}
-        outline={"none"}
-        border={"0px"}
-        focusBorderColor="transparent"
-      >
-        <option value="multi">All</option>
-        <option value="movie">Movie</option>
-        <option value="person">Person</option>
-        <option value="tv">TV</option>
-        <option value="collection">Collection</option>
-        <option value="person">Keyword</option>
-      </Select>
-    </div>
-  );
-};

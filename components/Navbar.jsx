@@ -22,6 +22,8 @@ import {
 import Menu from "./LeftMenu";
 import LeftMenu from "./LeftMenu";
 import Link from "next/link";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "@/libs/firebase-config";
 
 export default function Navbar() {
   const [movieData, setMovieData] = useRecoilState(movieDataState); //handling movieData from handleSearch results
@@ -31,6 +33,17 @@ export default function Navbar() {
   const [search] = useRecoilState(searchState); // search state provided by recoil
   const [select, setSelect] = useState("multi");
   const [openMenu, setOpenMenu] = useRecoilState(menuState); //open menubar
+  const [activeUser, setActiveUser] = useState({});
+
+  //getting logged in user
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      console.log(user.uid);
+      setActiveUser(user);
+    }
+  });
+
+  const displayImage = "/dummy-profile.jpg";
 
   //defining scroll effect when search button is clicked
   const scrollToTop = () => {
@@ -81,12 +94,26 @@ export default function Navbar() {
           <Link href={"/search"}>
             <SearchOutlinedIcon className=" text-2xl md:text-4xl text-black" />
           </Link>
-          <img
-            src="/hermandp.jpg"
-            alt="herman"
-            className=" h-7 w-7 md:h-12 md:w-12 object-cover border-2 border-blue-600 rounded-full"
-          />
-          <h6 className="hidden md:inline">Herman</h6>
+          <div className="border-4 rounded-full border-purple-600">
+            <img
+              src={activeUser?.photoURL ? activeUser?.photoURL : displayImage}
+              alt="herman"
+              className=" h-7 w-7 md:h-12 md:w-12 object-cover rounded-full"
+            />
+          </div>
+          <h6 className="hidden md:inline">
+            {activeUser ? (
+              activeUser?.displayName ? (
+                activeUser?.displayName
+              ) : (
+                activeUser?.email
+              )
+            ) : (
+              <Link href={"/register/signin"}>
+                <span>Sign in</span>
+              </Link>
+            )}
+          </h6>
         </div>
       </div>
       {/* <div>

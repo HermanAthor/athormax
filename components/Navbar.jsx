@@ -11,14 +11,7 @@ import {
 } from "@/providers/state-providers/RecoilStateProviders/context/RecoilContextStore";
 import { fetchFilms } from "@/libs/getMovies";
 import { animateScroll as scroll } from "react-scroll";
-import {
-  IconButton,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  InputRightElement,
-  Select,
-} from "@chakra-ui/react";
+import { IconButton } from "@chakra-ui/react";
 import Menu from "./LeftMenu";
 import LeftMenu from "./LeftMenu";
 import Link from "next/link";
@@ -36,18 +29,16 @@ export default function Navbar() {
   const [openMenu, setOpenMenu] = useRecoilState(menuState); //open menubar
   const [activeUser, setActiveUser] = useState({});
   const router = useRouter();
-  const dummyUser = {};
 
   //getting logged in user
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      console.log(user.uid);
       setActiveUser(user);
     }
   });
   const logOut = async () => {
     await signOut(auth);
-    router.refresh();
+    router.push("/");
   };
 
   const profileDisplay = activeUser.displayName
@@ -62,22 +53,6 @@ export default function Navbar() {
     scroll.scrollToTop();
   };
 
-  const handleSearch = async (e) => {
-    e.preventDefault();
-    const searchUrl = `https://api.themoviedb.org/3/search/${select}?query=${search}&include_adult=false&language=en-US&page=1`;
-
-    try {
-      if (search.length > 2) {
-        const data = await fetchFilms(searchUrl);
-        setMovieData(data);
-        setShowSearchComponent(true);
-        scrollToTop();
-      }
-    } catch (error) {
-      console.error("Error occurred while fetching results", error);
-    }
-  };
-
   return (
     <div
       className={`flex flex-col justify-start items-start md:items-center fixed top-0 w-full bg-gray-900 text-white px-5 md:px-10 py-5  z-50 `}
@@ -85,7 +60,7 @@ export default function Navbar() {
       <div className="flex justify-between w-full items-center relative">
         <div className="flex flex-row items-center gap-4 md:gap-10 text-white">
           <IconButton onClick={() => setOpenMenu(true)}>
-            <MenuIcon className="text-2xl md:text-4xl text-white" />
+            <MenuIcon className="text-xl md:text-2xl text-white" />
           </IconButton>
           <div className=" hidden md:flex flex-row items-center gap-3">
             <div>Movies</div>
@@ -97,7 +72,7 @@ export default function Navbar() {
             <img
               src="/hagmax.png"
               alt="hagmax"
-              className="h-full w-28 md:w-28 lg:w-full object-contain"
+              className="h-full w-16 md:w-20 lg:w-full object-contain"
             />
           </Link>
         </div>
@@ -112,7 +87,7 @@ export default function Navbar() {
             <img
               src={activeUser?.photoURL ? activeUser?.photoURL : displayImage}
               alt="herman"
-              className=" h-7 w-7 md:h-12 md:w-12 object-cover rounded-full"
+              className=" h-7 w-7 md:h-10 md:w-10 object-cover rounded-full"
             />
           </div>
           <div className="hidden md:inline">

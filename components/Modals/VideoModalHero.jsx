@@ -17,11 +17,17 @@ import { useState } from "react";
 import VideoPlayer from "./VideoPlayer";
 import { movieDurationfunction } from "@/libs/getDuration";
 import { useRouter } from "next/navigation";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "@/libs/firebase-config";
 
 function VideoModalHero({ movieVideos, isOpen, onClose }) {
+  const [activeUser, setActiveUser] = useState({});
+  onAuthStateChanged(auth, (user) => {
+    setActiveUser(user);
+  });
   const videoModal = useDisclosure();
   const router = useRouter();
-  const userId = "3456";
+  const userId = activeUser?.uid;
   // function to play video and close the modal
   const playAndClose = () => {
     if (userId) {

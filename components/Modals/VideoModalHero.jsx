@@ -16,14 +16,20 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { useState } from "react";
 import VideoPlayer from "./VideoPlayer";
 import { movieDurationfunction } from "@/libs/getDuration";
+import { useRouter } from "next/navigation";
 
 function VideoModalHero({ movieVideos, isOpen, onClose }) {
   const videoModal = useDisclosure();
-
+  const router = useRouter();
+  const userId = "3456";
   // function to play video and close the modal
   const playAndClose = () => {
-    videoModal.onOpen();
-    onClose();
+    if (userId) {
+      videoModal.onOpen();
+      onClose();
+    } else {
+      router.push("/register/signin");
+    }
   };
 
   // function to get the embeded Youtube videos

@@ -2,17 +2,38 @@
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 import { Button, useDisclosure } from "@chakra-ui/react";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import AddIcon from "@mui/icons-material/Add";
 import VideoModalHero from "./Modals/VideoModalHero";
 import { fetchMovieVideo } from "@/libs/getMovies";
+import axios from "axios";
 
-function MyMovies({ filteredMovieData }) {
-  console.log(filteredMovieData);
-  const moviesWithPosters = filteredMovieData.filter(
-    (movie) => movie.poster_path
-  );
+function MyMovies() {
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    async function getData() {
+      try {
+        const res = await axios.get("/api/mylist");
+        if (res) {
+          const data = res.data;
+          setMovies(data?.results);
+        } else {
+          console.log("Failed to get data");
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+
+    getData();
+  }, []);
+
+  const filteredMovieData = movies;
+  console.log();
+  console.log(movies);
+
   const { isOpen, onClose, onOpen } = useDisclosure();
 
   const [videos, setVideos] = useState([]); // state to keep truck of movies fetched by ID

@@ -45,8 +45,12 @@ export default function Navbar() {
             <MenuIcon className="text-xl md:text-2xl text-white" />
           </IconButton>
           <div className=" hidden md:flex flex-row items-center gap-3">
-            <div>Movies</div>
-            <div>Series</div>
+            <div>
+              <Link href={"/movies"}>Movies</Link>
+            </div>
+            <div>
+              <Link href={"/tv"}>Series</Link>
+            </div>
           </div>
         </div>
         <div className="h-12">

@@ -8,10 +8,19 @@ import AddIcon from "@mui/icons-material/Add";
 import VideoModalHero from "./Modals/VideoModalHero";
 import { fetchMovieVideo } from "@/libs/getMovies";
 import axios from "axios";
+import useCurrentUser from "@/libs/getCurrentUser";
 
 function MyMovies() {
   const [movies, setMovies] = useState([]);
+  const { user } = useCurrentUser();
+  console.log(user?.uid);
 
+  const filteredMovieData = movies?.filter((item) => {
+    if (item.userId === user?.uid) {
+      return item;
+    }
+  });
+  console.log(filteredMovieData);
   useEffect(() => {
     async function getData() {
       try {
@@ -30,7 +39,6 @@ function MyMovies() {
     getData();
   }, []);
 
-  const filteredMovieData = movies;
   console.log();
   console.log(movies);
 

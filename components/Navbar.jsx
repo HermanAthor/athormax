@@ -3,16 +3,9 @@ import React, { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { useRecoilState } from "recoil";
-import {
-  menuState,
-  movieDataState,
-  searchComponentState,
-  searchState,
-} from "@/providers/state-providers/RecoilStateProviders/context/RecoilContextStore";
-import { fetchFilms } from "@/libs/getMovies";
-import { animateScroll as scroll } from "react-scroll";
+import { menuState } from "@/providers/state-providers/RecoilStateProviders/context/RecoilContextStore";
+
 import { IconButton } from "@chakra-ui/react";
-import Menu from "./LeftMenu";
 import LeftMenu from "./LeftMenu";
 import Link from "next/link";
 import { onAuthStateChanged, signOut } from "firebase/auth";
@@ -20,12 +13,6 @@ import { auth } from "@/libs/firebase-config";
 import { useRouter } from "next/navigation";
 
 export default function Navbar() {
-  const [movieData, setMovieData] = useRecoilState(movieDataState); //handling movieData from handleSearch results
-  const [showSearchComponent, setShowSearchComponent] =
-    useRecoilState(searchComponentState); // state to determine if i can show the search component or not
-
-  const [search] = useRecoilState(searchState); // search state provided by recoil
-  const [select, setSelect] = useState("multi");
   const [openMenu, setOpenMenu] = useRecoilState(menuState); //open menubar
   const [activeUser, setActiveUser] = useState({});
   const router = useRouter();
@@ -41,17 +28,12 @@ export default function Navbar() {
     router.push("/");
   };
 
-  const profileDisplay = activeUser.displayName
+  const profileDisplay = activeUser?.displayName
     ? activeUser?.displayName
     : activeUser?.email;
   console.log(profileDisplay);
 
   const displayImage = "/dummy-profile.jpg";
-
-  //defining scroll effect when search button is clicked
-  const scrollToTop = () => {
-    scroll.scrollToTop();
-  };
 
   return (
     <div

@@ -16,12 +16,15 @@ import AddIcon from "@mui/icons-material/Add";
 
 import Link from "next/link";
 import VideoModalHero from "./Modals/VideoModalHero";
+import axios from "axios";
+import useCurrentUser from "@/libs/getCurrentUser";
 
 function ListCategories({ data, category }) {
   const { isOpen, onClose, onOpen } = useDisclosure();
   // const { data, error, isLoading } = useQuery("movies", fetchUpComingMovies);
 
   const [videos, setVideos] = useState([]); // state to keep truck of movies fetched by ID
+  const { user, loading } = useCurrentUser();
 
   // fetch movie video by its ID
   const getMovieVideos = async (id) => {
@@ -29,6 +32,27 @@ function ListCategories({ data, category }) {
     setVideos(response);
     onOpen();
   };
+
+  //function to save movies
+  const userId = user?.uid;
+  const addToList = async (item) => {
+    if (userId) {
+      const movieList = {
+        userId: userId,
+        movie: item,
+      };
+      try {
+        const response = await axios.post("/api/mylist", movieList);
+        console.log(response?.data?.results[0]);
+        // i have to impliment a toast here
+      } catch (error) {
+        console.error("Error adding to list:", error);
+      }
+    } else {
+      alert("You need to be logged in to save movies to your watch list");
+    }
+  };
+
   return (
     <div className="bg-black px-10">
       <div className="flex justify-between items-center">
@@ -85,6 +109,7 @@ function ListCategories({ data, category }) {
                               <span className="sr-only">Icon description</span>
                             </button>
                             <button
+                              onClick={() => addToList(movie)}
                               type="button"
                               className="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                             >

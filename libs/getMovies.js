@@ -41,3 +41,14 @@ export const fetchFilms = async (url) => {
   const movies = response.data.results;
   return movies;
 };
+
+export const fetchMyMovies = async () => {
+  const url = "https://www.athormax.online/api/mylist";
+  try {
+    const response = await axios(url);
+    const movies = response.data;
+    return movies;
+  } catch (error) {
+    console.log("Error fetching data", error);
+  }
+};

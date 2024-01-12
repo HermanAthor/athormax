@@ -20,7 +20,7 @@ const menuData = [
   { name: "Home", href: "/" },
   { name: "Movies", href: "/movies" },
   { name: "TV", href: "/tv" },
-  { name: "My Watch List", href: "#" },
+  { name: "My Watch List", href: "/mymovies" },
 ];
 
 function LeftMenu() {

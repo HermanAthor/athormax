@@ -4,7 +4,7 @@ import { Button, useDisclosure } from "@chakra-ui/react";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 import VideoModalHero from "./Modals/VideoModalHero";
 import { fetchMovieVideo } from "@/libs/getMovies";
 import axios from "axios";
@@ -97,10 +97,13 @@ function MyMovies() {
                             <span className="sr-only">Icon description</span>
                           </button>
                           <button
+                            onClick={() =>
+                              alert("We are currently working on this")
+                            }
                             type="button"
                             className="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                           >
-                            <AddIcon fontSize="small" />
+                            <RemoveIcon fontSize="small" />
                             <span className="sr-only">Icon description</span>
                           </button>
                         </div>

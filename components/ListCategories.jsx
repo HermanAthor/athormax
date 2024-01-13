@@ -54,7 +54,7 @@ function ListCategories({ data, category }) {
   };
 
   return (
-    <div className="bg-black px-10">
+    <div className=" px-2 md:px-10 py-5">
       <div className="flex justify-between items-center">
         <h1 className="text-white font-selif text-3xl pb-2 pt-3">{category}</h1>
       </div>

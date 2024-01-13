@@ -58,8 +58,15 @@ function MyMovies() {
         <p className="md:text-3xl pt-3 text-xl text-gray-200">{"My movies"}</p>
       </div>
       {filteredMovieData.length === 0 ? (
-        <div className="text-gray-400 text-2xl italic pl-7 pt-3">
+        <div
+          className={`${
+            filteredMovieData.length === 0 ? "h-screen" : "h-full"
+          } text-gray-400 text-2xl text-center italic pl-7 pt-3 md:pt-10`}
+        >
           Sorry, Nothing to show here consider adding movies to your list
+          <span className="text-blue-400 px-5 hover:underline">
+            <Link href={"/search"}>Browse movies</Link>
+          </span>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">

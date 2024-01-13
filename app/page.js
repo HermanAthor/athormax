@@ -33,6 +33,41 @@ export default function Home() {
           "https://api.themoviedb.org/3/movie/popular?language=en-US&page=2"
         ),
     },
+    {
+      queryKey: "toprated",
+      queryFn: () =>
+        fetchFilms(
+          "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=2"
+        ),
+    },
+    {
+      queryKey: "upcoming2",
+      queryFn: () =>
+        fetchFilms(
+          "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=3"
+        ),
+    },
+    {
+      queryKey: "nowPlaying2",
+      queryFn: () =>
+        fetchFilms(
+          "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=3"
+        ),
+    },
+    {
+      queryKey: "popular2",
+      queryFn: () =>
+        fetchFilms(
+          "https://api.themoviedb.org/3/movie/popular?language=en-US&page=3"
+        ),
+    },
+    {
+      queryKey: "toprated2",
+      queryFn: () =>
+        fetchFilms(
+          "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=3"
+        ),
+    },
   ];
 
   const queryResults = useQueries(queries);
@@ -40,11 +75,21 @@ export default function Home() {
   const upComingMovies = queryResults[0];
   const nowPlayingMovies = queryResults[1];
   const popularMovies = queryResults[2];
+  const topRated = queryResults[3];
+  const upComingMovies2 = queryResults[4];
+  const nowPlayingMovies2 = queryResults[5];
+  const popularMovies2 = queryResults[6];
+  const topRated2 = queryResults[7];
 
   if (
     upComingMovies.isLoading ||
     nowPlayingMovies.isLoading ||
-    popularMovies.isLoading
+    popularMovies.isLoading ||
+    topRated.isLoading ||
+    upComingMovies2.isLoading ||
+    nowPlayingMovies2.isLoading ||
+    popularMovies2.isLoading ||
+    topRated2.isLoading
   ) {
     return <Loader />;
   }
@@ -52,7 +97,12 @@ export default function Home() {
   if (
     upComingMovies.isError ||
     nowPlayingMovies.isError ||
-    popularMovies.isError
+    popularMovies.isError ||
+    topRated.isError ||
+    upComingMovies2.isError ||
+    nowPlayingMovies2.isError ||
+    popularMovies2.isError ||
+    topRated2.isError
   ) {
     return <p className="mt-32">Error fetching data </p>;
   }
@@ -62,7 +112,7 @@ export default function Home() {
       <Search />
       <Hero />
       {/* <Search /> */}
-      <section className="bg-gradient-to-b from-black via-[#2f1163] to-[#0d0d71]">
+      <section className="bg-gradient-to-b from-black via-[#2f1163] to-[#0d0d71] pb-10">
         <ListCategories
           data={upComingMovies.data}
           error={upComingMovies.isError}
@@ -81,13 +131,37 @@ export default function Home() {
           isLoading={popularMovies.isLoading}
           category={"Popular"}
         />
-        {/*<ListCategories
-          data={data}
-          error={error}
-          isLoading={isLoading}
-          category={"Comedy/Goofy"}
+        <ListCategories
+          data={topRated.data}
+          error={topRated.error}
+          isLoading={topRated.isLoading}
+          category={"Top Rated"}
         />
-       {/* <ListCategories
+        <ListCategories
+          data={upComingMovies2.data}
+          error={upComingMovies2.isError}
+          isLoading={upComingMovies2.isLoading}
+          category={"Inspired by most watched"}
+        />
+        <ListCategories
+          data={nowPlayingMovies2.data}
+          error={nowPlayingMovies2.error}
+          isLoading={nowPlayingMovies2.isLoading}
+          category={"Popular in your area"}
+        />
+        <ListCategories
+          data={popularMovies2.data}
+          error={popularMovies2.error}
+          isLoading={popularMovies2.isLoading}
+          category={"Top pics for you"}
+        />
+        <ListCategories
+          data={topRated2.data}
+          error={topRated2.error}
+          isLoading={topRated2.isLoading}
+          category={"Most rated"}
+        />
+        {/* <ListCategories
           data={data}
           error={error}
           isLoading={isLoading}

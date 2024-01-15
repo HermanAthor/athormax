@@ -6,6 +6,8 @@ import { ReactQueryProvider } from "@/providers/ReactQueryProvider";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Layouts/Footer";
 import RecoilProvider from "@/providers/state-providers/RecoilStateProviders/RecoilProvider";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +25,7 @@ export default function RootLayout({ children }) {
             <ChackrauiProvider>
               <Navbar />
               {children}
+              <ToastContainer />
               <Footer />
             </ChackrauiProvider>
           </ReactQueryProvider>

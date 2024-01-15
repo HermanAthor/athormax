@@ -51,7 +51,7 @@ function SignIn() {
   return (
     <div>
       <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-        Sign in With
+        <span>To continue </span>Sign in With
       </h1>
       <div className="grid grid-cols-2 gap-5 py-5">
         <button

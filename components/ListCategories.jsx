@@ -13,6 +13,7 @@ import { ArrowForwardIcon } from "@chakra-ui/icons";
 import { useQuery } from "react-query";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import AddIcon from "@mui/icons-material/Add";
+import { toast } from "react-toastify";
 
 import Link from "next/link";
 import VideoModalHero from "./Modals/VideoModalHero";
@@ -32,6 +33,8 @@ function ListCategories({ data, category }) {
     setVideos(response);
     onOpen();
   };
+  const notify = (title) =>
+    toast(`${title} has been added to  your watch list`);
 
   //function to save movies
   const userId = user?.uid;
@@ -43,6 +46,7 @@ function ListCategories({ data, category }) {
       };
       try {
         const response = await axios.post("/api/mylist", movieList);
+        notify(item?.title);
 
         // i have to impliment a toast here
       } catch (error) {

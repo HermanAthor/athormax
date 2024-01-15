@@ -1,4 +1,5 @@
 "use client";
+import useCurrentUser from "@/libs/getCurrentUser";
 import { fetchGenres } from "@/libs/getMovies";
 import { menuState } from "@/providers/state-providers/RecoilStateProviders/context/RecoilContextStore";
 import { ChevronDownIcon } from "@chakra-ui/icons";
@@ -26,6 +27,7 @@ const menuData = [
 function LeftMenu() {
   const [openMenu, setOpenMenu] = useRecoilState(menuState);
   const [genres, setGenres] = useState([]);
+  const { user, loading } = useCurrentUser();
   useEffect(() => {
     const getGenres = async () => {
       const data = await fetchGenres();
@@ -33,6 +35,9 @@ function LeftMenu() {
     };
     getGenres();
   }, []);
+
+  //Determining user display profile
+  const profileDisplay = user?.displayName ? user?.displayName : user?.email;
 
   const workingOnit = () => {
     setOpenMenu(false);
@@ -81,7 +86,7 @@ function LeftMenu() {
           ))}
         </div>
       </div>
-      <div className="flex flex-col pb-10 gap-7">
+      <div className="flex flex-col pb-10 pt-80 md:p-2 gap-7">
         <div
           className="flex flex-row items-center gap-3 "
           onClick={() => workingOnit()}
@@ -91,7 +96,7 @@ function LeftMenu() {
             alt="herman"
             className=" h-5 w-5 md:h-12 md:w-12 object-cover border-2 border-blue-600 rounded-full"
           />
-          <h6>Herman</h6>
+          <h6>{profileDisplay}</h6>
         </div>
         <p>
           &copy;

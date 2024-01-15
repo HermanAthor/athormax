@@ -43,7 +43,7 @@ function ListCategories({ data, category }) {
       };
       try {
         const response = await axios.post("/api/mylist", movieList);
-        console.log(response?.data?.results[0]);
+
         // i have to impliment a toast here
       } catch (error) {
         console.error("Error adding to list:", error);
@@ -54,7 +54,7 @@ function ListCategories({ data, category }) {
   };
 
   return (
-    <div className=" px-2 md:px-10 py-5">
+    <div className=" px-2 md:px-10 py-5 bg-black ">
       <div className="flex justify-between items-center">
         <h1 className="text-white font-selif text-3xl pb-2 pt-3">{category}</h1>
       </div>

@@ -66,11 +66,11 @@ function Hero() {
                   className=" object-fill md:object-cover h-auto w-full"
                 />
                 <div className="flex flex-col items-start justify-start w-[600px] absolute bottom-36 text-white text-lg left-10 z-40">
-                  <div className="w-96  mb-10 text-center -rotate-12">
+                  {/* <div className="w-96  mb-10 text-center -rotate-12">
                     <h3 className="hidden md:flex bg-clip-text  stroke-4 stroke-transparent str bg-gradient-to-r from-red-500 via-yellow-500 to-blue-700 text-clip text-transparent text-5xl">
                       {title}
                     </h3>
-                  </div>
+                  </div> */}
                   <h5 className=" uppercase font-semibold text-xl pb-2">
                     {title}
                   </h5>

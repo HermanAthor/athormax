@@ -1,17 +1,5 @@
 import React from "react";
-import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  useDisclosure,
-  Image,
-  Box,
-  Text,
-} from "@chakra-ui/react";
+import { Modal, ModalOverlay, ModalContent, ModalBody } from "@chakra-ui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import "swiper/css/bundle";
@@ -28,11 +16,6 @@ function VideoPlayer({ embededVideos, open, close }) {
         textColor={"whiteAlpha.900"}
         color={"white"}
       >
-        {/* <ModalCloseButton
-          color={"blue.500"}
-          fontSize={"3xl"}
-          backgroundColor={"gray.500"}
-        /> */}
         <ModalBody>
           <Swiper
             navigation={true}

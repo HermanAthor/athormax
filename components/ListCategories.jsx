@@ -72,11 +72,11 @@ function ListCategories({ data, category }) {
           },
           640: {
             slidesPerView: 2,
-            spaceBetween: 2,
+            spaceBetween: 1,
           },
           768: {
             slidesPerView: 3,
-            spaceBetween: 3,
+            spaceBetween: 1,
           },
           1024: {
             slidesPerView: 6,

@@ -43,8 +43,8 @@ function SearchComp({ data, filteredGenre }) {
     }
   };
   return (
-    <div className=" bg-black text-white px-10 pt-3 w-full">
-      <div className="flex flex-row w-full items-center gap-4 bg-gray-700 py-6 pl-3 rounded-lg">
+    <div className=" bg-black text-white px-2 md:px-10 pt-3 w-full">
+      <div className="flex flex-row w-full items-center gap-4 bg-gray-700 py-3 md:py-6 pl-3 rounded-lg">
         <SearchIcon className=" text-2xl md:text-4xl" />
         <form onSubmit={handleSearch}>
           <input
@@ -53,7 +53,7 @@ function SearchComp({ data, filteredGenre }) {
             placeholder={
               filteredGenre ? filteredGenre : "What are you looking for?"
             }
-            className="w-full bg-transparent outline-none text-xl"
+            className="w-full bg-transparent outline-none text-lg md:text-xl"
           />
         </form>
       </div>

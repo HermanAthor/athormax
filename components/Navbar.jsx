@@ -37,7 +37,7 @@ export default function Navbar() {
 
   return (
     <div
-      className={`flex flex-col justify-start items-start md:items-center fixed top-0 w-full bg-gray-900 text-white px-5 md:px-10 py-5  z-50 `}
+      className={`flex flex-col justify-start items-start md:items-center fixed top-0 w-full bg-gray-900 opacity-50 text-white px-5 md:px-10 py-5  z-50 `}
     >
       <div className="flex justify-between w-full items-center relative">
         <div className="flex flex-row items-center gap-4 md:gap-10 text-white">

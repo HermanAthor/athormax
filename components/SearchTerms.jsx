@@ -1,10 +1,9 @@
-import { fetchGenres } from "@/libs/getMovies";
 import Link from "next/link";
 import React from "react";
 
 function SearchTerms({ searchTerms }) {
   return (
-    <div className="bg-black text-white pt-3 w-full">
+    <div className="bg-black text-white py-3 w-full">
       <ul className="px-3 flex flex-row items-center overflow-x-auto gap-3 w-full no-scrollbar">
         {searchTerms.map((term) => (
           <Link href={`/search/searchparam/${term.id}`}>

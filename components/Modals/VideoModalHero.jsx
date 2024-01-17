@@ -48,16 +48,18 @@ function VideoModalHero({ movieVideos, isOpen, onClose }) {
     const { type, site, key } = video;
     if (type == "Trailer" && site == "YouTube") {
       embededVideos.push(
-        <iframe
-          className="pr-10"
-          width={"100%"}
-          height={"70%"}
-          src={`https://www.youtube.com/embed/${key}`}
-          title={video.name}
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
-          allowfullscreen={true}
-        ></iframe>
+        <div className="relative overflow-clip pt-[56.25%]">
+          <iframe
+            className="absolute top-0 left-0 w-[100%] h-[100%]"
+            width={"100%"}
+            height={"70%"}
+            src={`https://www.youtube.com/embed/${key}?autoplay=1&mute=1`}
+            title={video.name}
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+            allowfullscreen={true}
+          ></iframe>
+        </div>
       );
     }
   });

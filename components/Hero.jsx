@@ -40,10 +40,8 @@ function Hero() {
   if (error) return <p>{error.message}</p>;
 
   return (
-    <div className="w-full h-screen relative overflow-clip ">
+    <div className="w-full pt-20 h-screen relative overflow-clip ">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent  to-black"></div>
-      {/* <Navbar /> */}
-      {/* <Search /> */}
       <VideoModalHero isOpen={isOpen} onClose={onClose} movieVideos={videos} />
       <Swiper
         navigation={true}

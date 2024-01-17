@@ -9,18 +9,17 @@ import VideoModalHero from "./Modals/VideoModalHero";
 import { fetchMovieVideo } from "@/libs/getMovies";
 import axios from "axios";
 import useCurrentUser from "@/libs/getCurrentUser";
+import { toast } from "react-toastify";
 
 function MyMovies() {
   const [movies, setMovies] = useState([]);
   const { user } = useCurrentUser();
-  console.log(user?.uid);
 
   const filteredMovieData = movies?.filter((item) => {
     if (item.userId === user?.uid) {
       return item;
     }
   });
-  console.log(filteredMovieData);
   useEffect(() => {
     async function getData() {
       try {
@@ -35,12 +34,10 @@ function MyMovies() {
         console.error("Error fetching data:", error);
       }
     }
-
     getData();
-  }, []);
+  }, [filteredMovieData]);
 
   console.log();
-  console.log(movies);
 
   const { isOpen, onClose, onOpen } = useDisclosure();
 
@@ -52,6 +49,22 @@ function MyMovies() {
     setVideos(response);
     onOpen();
   };
+  //Deleting movie from watch list
+  const notify = () => toast(`Movie has been removed from your watch list`);
+  const userId = user?.uid;
+  const removeMovieFromWatchList = async (id) => {
+    if (userId) {
+      try {
+        const response = await axios.delete("/api/mylist", { data: { id } });
+        notify();
+      } catch (error) {
+        console.error("Error deleting movie:", error);
+      }
+    } else {
+      alert("You need to be logged in to delete movies from your watch list");
+    }
+  };
+
   return (
     <div className="md:py-5 pt-12 md:pt-0 pl-2 ">
       <div>
@@ -97,9 +110,7 @@ function MyMovies() {
                             <span className="sr-only">Icon description</span>
                           </button>
                           <button
-                            onClick={() =>
-                              alert("We are currently working on this")
-                            }
+                            onClick={() => removeMovieFromWatchList(movie?._id)}
                             type="button"
                             className="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                           >

@@ -91,11 +91,11 @@ function LeftMenu() {
           className="flex flex-row items-center gap-3 "
           onClick={() => workingOnit()}
         >
-          <img
+          {/* <img
             src="/hermandp.jpg"
             alt="herman"
             className=" h-5 w-5 md:h-12 md:w-12 object-cover border-2 border-blue-600 rounded-full"
-          />
+          /> */}
           <h6>{profileDisplay}</h6>
         </div>
         <p>

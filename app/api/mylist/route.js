@@ -2,6 +2,7 @@ import { myListMovies } from "@/app/mongodb/models/mylistMovies";
 import { mongodbconnect } from "@/libs/mongodbconnect";
 import { NextResponse } from "next/server";
 import { mongoose } from "mongoose";
+import { ObjectId } from "mongodb";
 
 export async function POST(req, res) {
   try {
@@ -45,6 +46,26 @@ export async function GET(req) {
     console.log("An error occured: ", error);
     return NextResponse.json({
       results: ["An error occured while fetching you movies"],
+      success: false,
+    });
+  }
+}
+
+// Removing movie from watchlist
+
+export async function DELETE(req) {
+  const { id } = await req.json();
+  try {
+    await mongodbconnect();
+    const movies = await myListMovies.deleteOne({ _id: new ObjectId(id) });
+    return NextResponse.json({
+      results: ["Movie removed from watchlist"],
+      success: true,
+    });
+  } catch (error) {
+    console.log("An error occured: ", error);
+    return NextResponse.json({
+      results: ["An error occured while deleting your movie"],
       success: false,
     });
   }

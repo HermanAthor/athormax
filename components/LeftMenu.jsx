@@ -46,7 +46,7 @@ function LeftMenu() {
     );
   };
   return (
-    <div className="fixed top-6 left-0 md:w-fit w-full  text-black flex flex-col justify-between rounded-xl bg-slate-300 dark:bg-inherit h-screen overflow-auto pl-5 animate__animated animate__fadeInLeft">
+    <div className="fixed top-6 left-0 md:w-fit w-full  text-black  dark:text-slate-200 flex flex-col justify-between rounded-xl bg-slate-200 dark:bg-gray-800 h-screen overflow-auto pl-5 animate__animated animate__fadeInLeft">
       <div className="flex flex-col text-2xl">
         <div className="flex justify-between items-center text-black px-3 pt-2">
           <div></div>
